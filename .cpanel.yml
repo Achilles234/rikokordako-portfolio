@@ -1,0 +1,6 @@
+
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/kirw2936/public_html/rikokordako.my.id/
+    - /bin/mkdir -p $DEPLOYPATH
+    - /bin/cp -R public/. $DEPLOYPATH
