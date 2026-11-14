@@ -113,9 +113,9 @@
                         2022
                     </p>
 
-                    <p class="mt-2 font-mono text-xs uppercase tracking-wider text-gray-500">
-                        Project Engagement
-                    </p>
+                    <p class="mt-2 font-mono text-xs uppercase tracking-wider text-gray-300">
+                    Project Engagement
+                </p>
 
                 </div>
 

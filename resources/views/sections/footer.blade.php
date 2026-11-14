@@ -17,7 +17,7 @@
                     RIKO KORDAKO<span class="text-accent-500">.</span>
                 </a>
 
-                <p class="mt-2 font-mono text-xs text-gray-500">
+                <p class="mt-2 font-mono text-xs text-gray-400">
                     Technology. Systems. Business.
                 </p>
 
@@ -85,7 +85,7 @@
         {{-- Copyright --}}
         <div class="mt-8 border-t border-white/10 pt-6">
 
-            <p class="font-mono text-xs leading-6 text-gray-600">
+            <p class="font-mono text-xs leading-6 text-gray-400">
                 © {{ date('Y') }} Riko Kordako. All rights reserved.
             </p>
 

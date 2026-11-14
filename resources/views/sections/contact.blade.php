@@ -86,7 +86,7 @@
                     {{-- Secondary Contact: Email --}}
                     <div class="mt-8 border-t border-white/10 pt-6">
 
-                        <p class="font-mono text-xs uppercase tracking-widest text-gray-500">
+                        <p class="font-mono text-xs uppercase tracking-widest text-gray-400">
                             Email
                         </p>
 
@@ -100,7 +100,7 @@
                     </div>
 
                     {{-- Availability Note --}}
-                    <p class="mt-8 text-xs leading-6 text-gray-500">
+                    <p class="mt-8 text-xs leading-6 text-gray-400">
                         Project availability is considered based on
                         scope, requirements, and schedule.
                     </p>

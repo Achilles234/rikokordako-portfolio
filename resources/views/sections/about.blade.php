@@ -36,7 +36,7 @@
                         Years of Professional Journey
                     </p>
 
-                    <p class="mt-3 max-w-xs text-sm leading-7 text-gray-500">
+                    <p class="mt-3 max-w-xs text-sm leading-7 text-gray-300">
                         Across technology, systems, business operations,
                         and continuous learning.
                     </p>

@@ -51,7 +51,7 @@
                         Technology · Hardware
                     </p>
 
-                    <span class="font-mono text-[10px] text-gray-500">
+                    <span class="font-mono text-[10px] text-gray-400">
                         01
                     </span>
 
@@ -69,7 +69,7 @@
 
                 <div class="mt-8 border-t border-white/10 pt-5">
 
-                    <p class="font-mono text-xs uppercase tracking-widest text-gray-500">
+                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400">
                         COMING SOON
                     </p>
 
@@ -86,7 +86,7 @@
                         Infrastructure · Networking
                     </p>
 
-                    <span class="font-mono text-[10px] text-gray-500">
+                    <span class="font-mono text-[10px] text-gray-400">
                         02
                     </span>
 
@@ -104,7 +104,7 @@
 
                 <div class="mt-8 border-t border-white/10 pt-5">
 
-                    <p class="font-mono text-xs uppercase tracking-widest text-gray-500">
+                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400">
                         COMING SOON
                     </p>
 
@@ -121,7 +121,7 @@
                         Development · Business
                     </p>
 
-                    <span class="font-mono text-[10px] text-gray-500">
+                    <span class="font-mono text-[10px] text-gray-400">
                         03
                     </span>
 
@@ -139,7 +139,7 @@
 
                 <div class="mt-8 border-t border-white/10 pt-5">
 
-                    <p class="font-mono text-xs uppercase tracking-widest text-gray-500">
+                    <p class="font-mono text-xs uppercase tracking-widest text-gray-400">
                         COMING SOON
                     </p>
 
