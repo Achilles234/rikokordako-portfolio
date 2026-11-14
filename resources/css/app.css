@@ -64,7 +64,7 @@
 
     --text-primary: #FFFFFF;
     --text-secondary: #9CA3AF;
-    --text-muted: #6B7280;
+    --text-muted: #9CA3AF;
 
     --border-primary: rgba(255, 255, 255, 0.10);
     --border-secondary: rgba(255, 255, 255, 0.06);
@@ -351,57 +351,4 @@ body,
 }
 
 
-
-/* =========================================================
-   HERO PORTRAIT - SMOOTH NATURAL FEATHER
-   ========================================================= */
-
-.hero-portrait-image {
-    display: block;
-    -webkit-mask-image:
-        linear-gradient(
-            to bottom,
-            transparent 0%,
-            rgba(0, 0, 0, 0.15) 5%,
-            #000 22%,
-            #000 76%,
-            rgba(0, 0, 0, 0.85) 88%,
-            rgba(0, 0, 0, 0.35) 96%,
-            transparent 100%
-        ),
-        linear-gradient(
-            to right,
-            transparent 0%,
-            rgba(0, 0, 0, 0.2) 5%,
-            #000 24%,
-            #000 76%,
-            rgba(0, 0, 0, 0.2) 95%,
-            transparent 100%
-        );
-
-    -webkit-mask-composite: source-in;
-
-    mask-image:
-        linear-gradient(
-            to bottom,
-            transparent 0%,
-            rgba(0, 0, 0, 0.15) 5%,
-            #000 22%,
-            #000 76%,
-            rgba(0, 0, 0, 0.85) 88%,
-            rgba(0, 0, 0, 0.35) 96%,
-            transparent 100%
-        ),
-        linear-gradient(
-            to right,
-            transparent 0%,
-            rgba(0, 0, 0, 0.2) 5%,
-            #000 24%,
-            #000 76%,
-            rgba(0, 0, 0, 0.2) 95%,
-            transparent 100%
-        );
-
-    mask-composite: intersect;
-}
 
