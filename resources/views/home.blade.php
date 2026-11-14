@@ -7,10 +7,11 @@
 
 @section('content')
 
+
 <main
     id="main-content"
     tabindex="-1"
-    class="min-h-screen bg-brand-950 text-white"
+    class="min-h-screen"
 >
 
     @include('sections.hero')
@@ -22,6 +23,7 @@
     @include('sections.contact')
 
 </main>
+
 
 @include('sections.footer')
 

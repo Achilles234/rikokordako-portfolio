@@ -3,7 +3,7 @@
 <section
     id="experience"
     aria-labelledby="experience-heading"
-    class="border-t border-white/10 bg-brand-950 py-28"
+    class="theme-border border-t theme-subtle py-28"
 >
 
     <div class="mx-auto max-w-7xl px-6 lg:px-12">
@@ -13,25 +13,23 @@
 
             <div class="lg:col-span-4">
 
-                <p class="font-mono text-xs uppercase tracking-[0.3em] text-accent-400">
-                    02 / Professional Journey
+                <p class="theme-accent font-mono text-xs uppercase tracking-[0.3em]">
+                    {{ __('messages.experience_eyebrow') }}
                 </p>
 
                 <h2
                     id="experience-heading"
-                    class="mt-6 font-heading text-4xl font-bold text-white md:text-5xl"
+                    class="theme-text-primary mt-6 font-heading text-4xl font-bold md:text-5xl"
                 >
-                    Experience<span class="text-accent-500">.</span>
+                    {{ __('messages.experience_heading') }}<span class="theme-accent">.</span>
                 </h2>
 
             </div>
 
             <div class="lg:col-span-8">
 
-                <p class="max-w-2xl text-lg leading-8 text-gray-400">
-                    A professional journey shaped by diverse industries,
-                    technical challenges, business experience, and
-                    continuous exploration of technology.
+                <p class="theme-text-secondary max-w-2xl text-lg leading-8">
+                    {{ __('messages.experience_intro') }}
                 </p>
 
             </div>
@@ -39,34 +37,29 @@
         </div>
 
         {{-- Experience Timeline --}}
-        <div class="border-t border-white/10">
+        <div class="theme-border border-t">
 
             {{-- KSP --}}
-            <article class="grid grid-cols-1 gap-4 border-b border-white/10 py-10 md:grid-cols-12 md:gap-8">
+            <article class="theme-border grid grid-cols-1 gap-4 border-b py-10 md:grid-cols-12 md:gap-8">
 
                 <div class="md:col-span-3">
-                    <p class="font-mono text-sm text-accent-400">
+                    <p class="theme-accent font-mono text-sm">
                         2024 — Present
                     </p>
                 </div>
 
                 <div class="md:col-span-9">
 
-                    <h3 class="font-heading text-2xl font-bold text-white">
-                        IT Administrator
+                    <h3 class="theme-text-primary font-heading text-2xl font-bold">
+                        {{ __('messages.experience_ksp_role') }}
                     </h3>
 
-                    <p class="mt-2 text-sm text-gray-400">
+                    <p class="theme-text-secondary mt-2 text-sm">
                         PT Kirana Semesta Pangan
                     </p>
 
-                    <p class="mt-5 max-w-2xl text-sm leading-7 text-gray-400">
-                        Managing IT infrastructure, office networks,
-                        computer systems, CCTV infrastructure, and
-                        day-to-day IT operations. Supporting the company's
-                        vendor-based sales platform while exploring
-                        internal system development and practical digital
-                        solutions to improve business processes.
+                    <p class="theme-text-secondary mt-5 max-w-2xl text-sm leading-7">
+                        {{ __('messages.experience_ksp_description') }}
                     </p>
 
                 </div>
@@ -74,30 +67,26 @@
             </article>
 
             {{-- Independent IT Support --}}
-            <article class="grid grid-cols-1 gap-4 border-b border-white/10 py-10 md:grid-cols-12 md:gap-8">
+            <article class="theme-border grid grid-cols-1 gap-4 border-b py-10 md:grid-cols-12 md:gap-8">
 
                 <div class="md:col-span-3">
-                    <p class="font-mono text-sm text-accent-400">
+                    <p class="theme-accent font-mono text-sm">
                         2021 — 2024
                     </p>
                 </div>
 
                 <div class="md:col-span-9">
 
-                    <h3 class="font-heading text-2xl font-bold text-white">
-                        Independent IT Support & Technical Services
+                    <h3 class="theme-text-primary font-heading text-2xl font-bold">
+                        {{ __('messages.experience_independent_role') }}
                     </h3>
 
-                    <p class="mt-2 text-sm text-gray-400">
-                        Independent Technical Practice
+                    <p class="theme-text-secondary mt-2 text-sm">
+                        {{ __('messages.experience_independent_company') }}
                     </p>
 
-                    <p class="mt-5 max-w-2xl text-sm leading-7 text-gray-400">
-                        Provided independent technical services covering
-                        PC assembly, hardware troubleshooting, network
-                        installation, configuration, and general IT support.
-                        Worked on various technical needs and practical
-                        solutions for individual and business environments.
+                    <p class="theme-text-secondary mt-5 max-w-2xl text-sm leading-7">
+                        {{ __('messages.experience_independent_description') }}
                     </p>
 
                 </div>
@@ -105,42 +94,36 @@
             </article>
 
             {{-- ATCS Project --}}
-            <article class="grid grid-cols-1 gap-4 border-b border-white/10 py-10 md:grid-cols-12 md:gap-8">
+            <article class="theme-border grid grid-cols-1 gap-4 border-b py-10 md:grid-cols-12 md:gap-8">
 
                 <div class="md:col-span-3">
 
-                    <p class="font-mono text-sm text-accent-400">
+                    <p class="theme-accent font-mono text-sm">
                         2022
                     </p>
 
-                    <p class="mt-2 font-mono text-xs uppercase tracking-wider text-gray-300">
-                    Project Engagement
-                </p>
+                    <p class="theme-text-secondary mt-2 font-mono text-xs uppercase tracking-wider">
+                        {{ __('messages.experience_project_engagement') }}
+                    </p>
 
                 </div>
 
                 <div class="md:col-span-9">
 
-                    <h3 class="font-heading text-2xl font-bold text-white">
-                        ATCS Monitoring System Project
+                    <h3 class="theme-text-primary font-heading text-2xl font-bold">
+                        {{ __('messages.experience_atcs_role') }}
                     </h3>
 
-                    <p class="mt-2 text-sm text-gray-400">
-                        Kota Subang, Indonesia
+                    <p class="theme-text-secondary mt-2 text-sm">
+                        {{ __('messages.experience_atcs_location') }}
                     </p>
 
-                    <p class="mt-5 max-w-2xl text-sm leading-7 text-gray-400">
-                        Developed a CCTV monitoring dashboard and supervised
-                        field deployment activities for an Area Traffic
-                        Control System project.
+                    <p class="theme-text-secondary mt-5 max-w-2xl text-sm leading-7">
+                        {{ __('messages.experience_atcs_description_1') }}
                     </p>
 
-                    <p class="mt-4 max-w-2xl text-sm leading-7 text-gray-400">
-                        Contributed to server configuration, network
-                        infrastructure, Hikvision surveillance integration,
-                        and video wall deployment. Also processed and
-                        organized camera-generated event data for
-                        operational monitoring and reporting.
+                    <p class="theme-text-secondary mt-4 max-w-2xl text-sm leading-7">
+                        {{ __('messages.experience_atcs_description_2') }}
                     </p>
 
                 </div>
@@ -148,28 +131,26 @@
             </article>
 
             {{-- Honda --}}
-            <article class="grid grid-cols-1 gap-4 border-b border-white/10 py-10 md:grid-cols-12 md:gap-8">
+            <article class="theme-border grid grid-cols-1 gap-4 border-b py-10 md:grid-cols-12 md:gap-8">
 
                 <div class="md:col-span-3">
-                    <p class="font-mono text-sm text-accent-400">
+                    <p class="theme-accent font-mono text-sm">
                         2016 — 2020
                     </p>
                 </div>
 
                 <div class="md:col-span-9">
 
-                    <h3 class="font-heading text-2xl font-bold text-white">
-                        Sales Representative
+                    <h3 class="theme-text-primary font-heading text-2xl font-bold">
+                        {{ __('messages.experience_honda_role') }}
                     </h3>
 
-                    <p class="mt-2 text-sm text-gray-400">
+                    <p class="theme-text-secondary mt-2 text-sm">
                         Honda Autobest · Bandung
                     </p>
 
-                    <p class="mt-5 max-w-2xl text-sm leading-7 text-gray-400">
-                        Managed automotive sales activities, customer
-                        relationships, product presentations, and vehicle
-                        financing coordination.
+                    <p class="theme-text-secondary mt-5 max-w-2xl text-sm leading-7">
+                        {{ __('messages.experience_honda_description') }}
                     </p>
 
                 </div>
@@ -177,28 +158,26 @@
             </article>
 
             {{-- OTO --}}
-            <article class="grid grid-cols-1 gap-4 border-b border-white/10 py-10 md:grid-cols-12 md:gap-8">
+            <article class="theme-border grid grid-cols-1 gap-4 border-b py-10 md:grid-cols-12 md:gap-8">
 
                 <div class="md:col-span-3">
-                    <p class="font-mono text-sm text-accent-400">
+                    <p class="theme-accent font-mono text-sm">
                         2009 — 2016
                     </p>
                 </div>
 
                 <div class="md:col-span-9">
 
-                    <h3 class="font-heading text-2xl font-bold text-white">
-                        Credit Marketing Officer (CMO)
+                    <h3 class="theme-text-primary font-heading text-2xl font-bold">
+                        {{ __('messages.experience_oto_role') }}
                     </h3>
 
-                    <p class="mt-2 text-sm text-gray-400">
+                    <p class="theme-text-secondary mt-2 text-sm">
                         PT Summit Oto Finance
                     </p>
 
-                    <p class="mt-5 max-w-2xl text-sm leading-7 text-gray-400">
-                        Evaluated prospective customers for vehicle financing
-                        by analyzing customer profiles, financial capacity,
-                        and credit eligibility to support financing decisions.
+                    <p class="theme-text-secondary mt-5 max-w-2xl text-sm leading-7">
+                        {{ __('messages.experience_oto_description') }}
                     </p>
 
                 </div>
@@ -206,28 +185,26 @@
             </article>
 
             {{-- Teaching --}}
-            <article class="grid grid-cols-1 gap-4 border-b border-white/10 py-10 md:grid-cols-12 md:gap-8">
+            <article class="theme-border grid grid-cols-1 gap-4 border-b py-10 md:grid-cols-12 md:gap-8">
 
                 <div class="md:col-span-3">
-                    <p class="font-mono text-sm text-accent-400">
+                    <p class="theme-accent font-mono text-sm">
                         2007 — 2009
                     </p>
                 </div>
 
                 <div class="md:col-span-9">
 
-                    <h3 class="font-heading text-2xl font-bold text-white">
-                        Computer Teacher & Lab Development
+                    <h3 class="theme-text-primary font-heading text-2xl font-bold">
+                        {{ __('messages.experience_teaching_role') }}
                     </h3>
 
-                    <p class="mt-2 text-sm text-gray-400">
-                        Elementary School
+                    <p class="theme-text-secondary mt-2 text-sm">
+                        {{ __('messages.experience_teaching_company') }}
                     </p>
 
-                    <p class="mt-5 max-w-2xl text-sm leading-7 text-gray-400">
-                        Developed a computer laboratory from 5 to 40 computers,
-                        established its network infrastructure, and delivered
-                        computer education to students.
+                    <p class="theme-text-secondary mt-5 max-w-2xl text-sm leading-7">
+                        {{ __('messages.experience_teaching_description') }}
                     </p>
 
                 </div>
@@ -235,28 +212,26 @@
             </article>
 
             {{-- Animation --}}
-            <article class="grid grid-cols-1 gap-4 border-b border-white/10 py-10 md:grid-cols-12 md:gap-8">
+            <article class="theme-border grid grid-cols-1 gap-4 border-b py-10 md:grid-cols-12 md:gap-8">
 
                 <div class="md:col-span-3">
-                    <p class="font-mono text-sm text-accent-400">
+                    <p class="theme-accent font-mono text-sm">
                         2005 — 2006
                     </p>
                 </div>
 
                 <div class="md:col-span-9">
 
-                    <h3 class="font-heading text-2xl font-bold text-white">
-                        Assistant Animator
+                    <h3 class="theme-text-primary font-heading text-2xl font-bold">
+                        {{ __('messages.experience_animation_role') }}
                     </h3>
 
-                    <p class="mt-2 text-sm text-gray-400">
-                        Animation Production
+                    <p class="theme-text-secondary mt-2 text-sm">
+                        {{ __('messages.experience_animation_company') }}
                     </p>
 
-                    <p class="mt-5 max-w-2xl text-sm leading-7 text-gray-400">
-                        Contributed to animation production workflows using
-                        3D modeling and animation tools, including 3ds Max
-                        and MotionBuilder.
+                    <p class="theme-text-secondary mt-5 max-w-2xl text-sm leading-7">
+                        {{ __('messages.experience_animation_description') }}
                     </p>
 
                 </div>
@@ -264,30 +239,26 @@
             </article>
 
             {{-- Fusion Computer --}}
-            <article class="grid grid-cols-1 gap-4 border-b border-white/10 py-10 md:grid-cols-12 md:gap-8">
+            <article class="theme-border grid grid-cols-1 gap-4 border-b py-10 md:grid-cols-12 md:gap-8">
 
                 <div class="md:col-span-3">
-                    <p class="font-mono text-sm text-accent-400">
+                    <p class="theme-accent font-mono text-sm">
                         2003 — 2005
                     </p>
                 </div>
 
                 <div class="md:col-span-9">
 
-                    <h3 class="font-heading text-2xl font-bold text-white">
-                        Computer Technician
+                    <h3 class="theme-text-primary font-heading text-2xl font-bold">
+                        {{ __('messages.experience_fusion_role') }}
                     </h3>
 
-                    <p class="mt-2 text-sm text-gray-400">
+                    <p class="theme-text-secondary mt-2 text-sm">
                         Fusion Computer · Bandung
                     </p>
 
-                    <p class="mt-5 max-w-2xl text-sm leading-7 text-gray-400">
-                        Worked with computer hardware, PC assembly,
-                        troubleshooting, and system optimization while
-                        pursuing a degree in Computer Engineering.
-                        Gained hands-on experience with PC components,
-                        hardware performance, and system configuration.
+                    <p class="theme-text-secondary mt-5 max-w-2xl text-sm leading-7">
+                        {{ __('messages.experience_fusion_description') }}
                     </p>
 
                 </div>

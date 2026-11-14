@@ -3,7 +3,7 @@
 <section
     id="technology-lab"
     aria-labelledby="technology-lab-heading"
-    class="border-t border-white/10 bg-brand-950 py-28"
+    class="theme-border border-t theme-subtle py-28"
 >
 
     <div class="mx-auto max-w-7xl px-6 lg:px-12">
@@ -13,26 +13,24 @@
 
             <div class="lg:col-span-5">
 
-                <p class="font-mono text-xs uppercase tracking-[0.3em] text-accent-400">
-                    04 / Technology Lab
+                <p class="theme-accent font-mono text-xs uppercase tracking-[0.3em]">
+                    {{ __('messages.technology_eyebrow') }}
                 </p>
 
                 <h2
                     id="technology-lab-heading"
-                    class="mt-6 font-heading text-4xl font-bold text-white md:text-5xl"
+                    class="theme-text-primary mt-6 font-heading text-4xl font-bold md:text-5xl"
                 >
-                    Technical<br>
-                    Capabilities<span class="text-accent-500">.</span>
+                    {{ __('messages.technology_heading_line1') }}<br>
+                    {{ __('messages.technology_heading_line2') }}<span class="theme-accent">.</span>
                 </h2>
 
             </div>
 
             <div class="lg:col-span-7">
 
-                <p class="max-w-2xl text-lg leading-8 text-gray-400">
-                    Technology is more than a collection of tools.
-                    It is about understanding how components work together
-                    to create reliable and practical solutions.
+                <p class="theme-text-secondary max-w-2xl text-lg leading-8">
+                    {{ __('messages.technology_intro') }}
                 </p>
 
             </div>
@@ -40,189 +38,175 @@
         </div>
 
         {{-- Capability Grid --}}
-        <div class="grid grid-cols-1 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 md:grid-cols-2 lg:grid-cols-3">
+        <div class="theme-border grid grid-cols-1 gap-px overflow-hidden rounded-2xl border md:grid-cols-2 lg:grid-cols-3">
 
             {{-- 01 Infrastructure --}}
-            <article class="bg-brand-950 p-8 transition-colors duration-300 hover:bg-brand-900">
+            <article class="theme-card p-8 transition-colors duration-300">
 
-                <p class="font-mono text-xs text-accent-400">
-                    01 / INFRASTRUCTURE
+                <p class="theme-accent font-mono text-xs">
+                    {{ __('messages.technology_infrastructure_category') }}
                 </p>
 
-                <h3 class="mt-6 font-heading text-xl font-bold text-white">
-                    IT Infrastructure
+                <h3 class="theme-text-primary mt-6 font-heading text-xl font-bold">
+                    {{ __('messages.technology_infrastructure_title') }}
                 </h3>
 
-                <p class="mt-4 text-sm leading-7 text-gray-400">
-                    Computer hardware, server configuration,
-                    operating system maintenance, troubleshooting,
-                    and day-to-day IT infrastructure management.
+                <p class="theme-text-secondary mt-4 text-sm leading-7">
+                    {{ __('messages.technology_infrastructure_description') }}
                 </p>
 
                 <div class="mt-6 flex flex-wrap gap-x-3 gap-y-2">
-                    <span class="text-xs text-gray-300">PC Hardware</span>
-                    <span class="text-xs text-gray-500">/</span>
-                    <span class="text-xs text-gray-300">Windows</span>
-                    <span class="text-xs text-gray-500">/</span>
-                    <span class="text-xs text-gray-300">Servers</span>
+                    <span class="theme-text-secondary text-xs">{{ __('messages.technology_infrastructure_tag_hardware') }}</span>
+                    <span class="theme-text-muted text-xs">/</span>
+                    <span class="theme-text-secondary text-xs">Windows</span>
+                    <span class="theme-text-muted text-xs">/</span>
+                    <span class="theme-text-secondary text-xs">{{ __('messages.technology_infrastructure_tag_servers') }}</span>
                 </div>
 
             </article>
 
             {{-- 02 Networking --}}
-            <article class="bg-brand-950 p-8 transition-colors duration-300 hover:bg-brand-900">
+            <article class="theme-card p-8 transition-colors duration-300">
 
-                <p class="font-mono text-xs text-accent-400">
-                    02 / NETWORKING
+                <p class="theme-accent font-mono text-xs">
+                    {{ __('messages.technology_networking_category') }}
                 </p>
 
-                <h3 class="mt-6 font-heading text-xl font-bold text-white">
-                    Network Systems
+                <h3 class="theme-text-primary mt-6 font-heading text-xl font-bold">
+                    {{ __('messages.technology_networking_title') }}
                 </h3>
 
-                <p class="mt-4 text-sm leading-7 text-gray-400">
-                    LAN infrastructure, network configuration,
-                    routing, connectivity management, and
-                    troubleshooting for office environments.
+                <p class="theme-text-secondary mt-4 text-sm leading-7">
+                    {{ __('messages.technology_networking_description') }}
                 </p>
 
                 <div class="mt-6 flex flex-wrap gap-x-3 gap-y-2">
-                    <span class="text-xs text-gray-300">MikroTik</span>
-                    <span class="text-xs text-gray-500">/</span>
-                    <span class="text-xs text-gray-300">TCP/IP</span>
-                    <span class="text-xs text-gray-500">/</span>
-                    <span class="text-xs text-gray-300">LAN</span>
+                    <span class="theme-text-secondary text-xs">MikroTik</span>
+                    <span class="theme-text-muted text-xs">/</span>
+                    <span class="theme-text-secondary text-xs">TCP/IP</span>
+                    <span class="theme-text-muted text-xs">/</span>
+                    <span class="theme-text-secondary text-xs">LAN</span>
                 </div>
 
             </article>
 
             {{-- 03 Surveillance --}}
-            <article class="bg-brand-950 p-8 transition-colors duration-300 hover:bg-brand-900">
+            <article class="theme-card p-8 transition-colors duration-300">
 
-                <p class="font-mono text-xs text-accent-400">
-                    03 / SURVEILLANCE
+                <p class="theme-accent font-mono text-xs">
+                    {{ __('messages.technology_surveillance_category') }}
                 </p>
 
-                <h3 class="mt-6 font-heading text-xl font-bold text-white">
-                    CCTV & Monitoring
+                <h3 class="theme-text-primary mt-6 font-heading text-xl font-bold">
+                    {{ __('messages.technology_surveillance_title') }}
                 </h3>
 
-                <p class="mt-4 text-sm leading-7 text-gray-400">
-                    CCTV deployment, NVR configuration,
-                    surveillance infrastructure, video wall
-                    integration, and monitoring systems.
+                <p class="theme-text-secondary mt-4 text-sm leading-7">
+                    {{ __('messages.technology_surveillance_description') }}
                 </p>
 
                 <div class="mt-6 flex flex-wrap gap-x-3 gap-y-2">
-                    <span class="text-xs text-gray-300">Hikvision</span>
-                    <span class="text-xs text-gray-500">/</span>
-                    <span class="text-xs text-gray-300">NVR</span>
-                    <span class="text-xs text-gray-500">/</span>
-                    <span class="text-xs text-gray-300">Video Wall</span>
+                    <span class="theme-text-secondary text-xs">Hikvision</span>
+                    <span class="theme-text-muted text-xs">/</span>
+                    <span class="theme-text-secondary text-xs">NVR</span>
+                    <span class="theme-text-muted text-xs">/</span>
+                    <span class="theme-text-secondary text-xs">{{ __('messages.technology_surveillance_tag_video_wall') }}</span>
                 </div>
 
             </article>
 
             {{-- 04 Development --}}
-            <article class="bg-brand-950 p-8 transition-colors duration-300 hover:bg-brand-900">
+            <article class="theme-card p-8 transition-colors duration-300">
 
-                <p class="font-mono text-xs text-accent-400">
-                    04 / DEVELOPMENT
+                <p class="theme-accent font-mono text-xs">
+                    {{ __('messages.technology_development_category') }}
                 </p>
 
-                <h3 class="mt-6 font-heading text-xl font-bold text-white">
-                    System Development
+                <h3 class="theme-text-primary mt-6 font-heading text-xl font-bold">
+                    {{ __('messages.technology_development_title') }}
                 </h3>
 
-                <p class="mt-4 text-sm leading-7 text-gray-400">
-                    Developing web-based applications, exploring
-                    business system architecture, database structures,
-                    and practical internal digital tools.
+                <p class="theme-text-secondary mt-4 text-sm leading-7">
+                    {{ __('messages.technology_development_description') }}
                 </p>
 
                 <div class="mt-6 flex flex-wrap gap-x-3 gap-y-2">
-                    <span class="text-xs text-gray-300">Laravel</span>
-                    <span class="text-xs text-gray-500">/</span>
-                    <span class="text-xs text-gray-300">PHP</span>
-                    <span class="text-xs text-gray-500">/</span>
-                    <span class="text-xs text-gray-300">MySQL</span>
+                    <span class="theme-text-secondary text-xs">Laravel</span>
+                    <span class="theme-text-muted text-xs">/</span>
+                    <span class="theme-text-secondary text-xs">PHP</span>
+                    <span class="theme-text-muted text-xs">/</span>
+                    <span class="theme-text-secondary text-xs">MySQL</span>
                 </div>
 
             </article>
 
             {{-- 05 Automation --}}
-            <article class="bg-brand-950 p-8 transition-colors duration-300 hover:bg-brand-900">
+            <article class="theme-card p-8 transition-colors duration-300">
 
-                <p class="font-mono text-xs text-accent-400">
-                    05 / AUTOMATION
+                <p class="theme-accent font-mono text-xs">
+                    {{ __('messages.technology_automation_category') }}
                 </p>
 
-                <h3 class="mt-6 font-heading text-xl font-bold text-white">
-                    Automation & Electronics
+                <h3 class="theme-text-primary mt-6 font-heading text-xl font-bold">
+                    {{ __('messages.technology_automation_title') }}
                 </h3>
 
-                <p class="mt-4 text-sm leading-7 text-gray-400">
-                    Microcontroller-based projects, electronic
-                    control concepts, and practical experimentation
-                    with hardware interfaces.
+                <p class="theme-text-secondary mt-4 text-sm leading-7">
+                    {{ __('messages.technology_automation_description') }}
                 </p>
 
                 <div class="mt-6 flex flex-wrap gap-x-3 gap-y-2">
-                    <span class="text-xs text-gray-300">AT89C51</span>
-                    <span class="text-xs text-gray-500">/</span>
-                    <span class="text-xs text-gray-300">Microcontroller</span>
+                    <span class="theme-text-secondary text-xs">AT89C51</span>
+                    <span class="theme-text-muted text-xs">/</span>
+                    <span class="theme-text-secondary text-xs">{{ __('messages.technology_automation_tag_microcontroller') }}</span>
                 </div>
 
             </article>
 
             {{-- 06 Digital Operations --}}
-            <article class="bg-brand-950 p-8 transition-colors duration-300 hover:bg-brand-900">
+            <article class="theme-card p-8 transition-colors duration-300">
 
-                <p class="font-mono text-xs text-accent-400">
-                    06 / DIGITAL OPERATIONS
+                <p class="theme-accent font-mono text-xs">
+                    {{ __('messages.technology_digital_category') }}
                 </p>
 
-                <h3 class="mt-6 font-heading text-xl font-bold text-white">
-                    Digital Operations
+                <h3 class="theme-text-primary mt-6 font-heading text-xl font-bold">
+                    {{ __('messages.technology_digital_title') }}
                 </h3>
 
-                <p class="mt-4 text-sm leading-7 text-gray-400">
-                    Data processing, Excel-based workflows,
-                    version control, system administration,
-                    and technology support for business operations.
+                <p class="theme-text-secondary mt-4 text-sm leading-7">
+                    {{ __('messages.technology_digital_description') }}
                 </p>
 
                 <div class="mt-6 flex flex-wrap gap-x-3 gap-y-2">
-                    <span class="text-xs text-gray-300">Microsoft Excel</span>
-                    <span class="text-xs text-gray-500">/</span>
-                    <span class="text-xs text-gray-300">Git</span>
+                    <span class="theme-text-secondary text-xs">Microsoft Excel</span>
+                    <span class="theme-text-muted text-xs">/</span>
+                    <span class="theme-text-secondary text-xs">Git</span>
                 </div>
 
             </article>
 
             {{-- 07 Hardware Engineering --}}
-            <article class="bg-brand-950 p-8 transition-colors duration-300 hover:bg-brand-900">
+            <article class="theme-card p-8 transition-colors duration-300">
 
-                <p class="font-mono text-xs text-accent-400">
-                    07 / HARDWARE ENGINEERING
+                <p class="theme-accent font-mono text-xs">
+                    {{ __('messages.technology_hardware_category') }}
                 </p>
 
-                <h3 class="mt-6 font-heading text-xl font-bold text-white">
-                    Hardware Engineering & Optimization
+                <h3 class="theme-text-primary mt-6 font-heading text-xl font-bold">
+                    {{ __('messages.technology_hardware_title') }}
                 </h3>
 
-                <p class="mt-4 text-sm leading-7 text-gray-400">
-                    PC assembly, hardware upgrades, component
-                    optimization, performance tuning, and
-                    hands-on computer troubleshooting.
+                <p class="theme-text-secondary mt-4 text-sm leading-7">
+                    {{ __('messages.technology_hardware_description') }}
                 </p>
 
                 <div class="mt-6 flex flex-wrap gap-x-3 gap-y-2">
-                    <span class="text-xs text-gray-300">PC Assembly</span>
-                    <span class="text-xs text-gray-500">/</span>
-                    <span class="text-xs text-gray-300">Hardware Tuning</span>
-                    <span class="text-xs text-gray-500">/</span>
-                    <span class="text-xs text-gray-300">Overclocking</span>
+                    <span class="theme-text-secondary text-xs">{{ __('messages.technology_hardware_tag_assembly') }}</span>
+                    <span class="theme-text-muted text-xs">/</span>
+                    <span class="theme-text-secondary text-xs">{{ __('messages.technology_hardware_tag_tuning') }}</span>
+                    <span class="theme-text-muted text-xs">/</span>
+                    <span class="theme-text-secondary text-xs">{{ __('messages.technology_hardware_tag_overclocking') }}</span>
                 </div>
 
             </article>

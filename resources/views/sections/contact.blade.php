@@ -3,9 +3,8 @@
 <section
     id="contact"
     aria-labelledby="contact-heading"
-    class="relative overflow-hidden border-t border-white/10 bg-brand-950 py-28"
+    class="relative overflow-hidden theme-border border-t theme-subtle py-28"
 >
-
     <div class="mx-auto max-w-7xl px-6 lg:px-12">
 
         <div class="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:items-end">
@@ -13,36 +12,35 @@
             {{-- Contact Heading --}}
             <div class="lg:col-span-7">
 
-                <p class="font-mono text-xs uppercase tracking-[0.3em] text-accent-400">
-                    06 / Project Inquiries
+                <p class="theme-accent font-mono text-xs uppercase tracking-[0.3em]">
+                    {{ __('messages.contact_eyebrow') }}
                 </p>
 
                 <h2
                     id="contact-heading"
-                    class="mt-8 font-heading text-5xl font-extrabold leading-tight text-white md:text-7xl"
+                    class="theme-text-primary mt-8 font-heading text-5xl font-extrabold leading-tight md:text-7xl"
                 >
-                    Have a Project?
+                    {{ __('messages.contact_heading_line1') }}
                     <br>
-                    <span class="text-accent-500">Let's Talk.</span>
+                    <span class="theme-accent">
+                        {{ __('messages.contact_heading_line2') }}
+                    </span>
                 </h2>
 
-                <p class="mt-8 max-w-xl text-base leading-8 text-gray-400 md:text-lg">
-                    Have a technical challenge or an idea worth exploring?
-                    I welcome selected freelance projects, technical
-                    consultations, and collaborations focused on
-                    practical technology solutions.
+                <p class="theme-text-secondary mt-8 max-w-xl text-base leading-8 md:text-lg">
+                    {{ __('messages.contact_intro') }}
                 </p>
 
                 {{-- Availability Status --}}
-                <div class="mt-8 inline-flex items-center gap-3 rounded-full border border-white/10 px-4 py-2">
+                <div class="theme-border mt-8 inline-flex items-center gap-3 rounded-full border px-4 py-2">
 
                     <span
-                        class="h-2 w-2 rounded-full bg-accent-400"
+                        class="bg-accent-400 h-2 w-2 rounded-full"
                         aria-hidden="true"
                     ></span>
 
-                    <span class="font-mono text-xs text-gray-300">
-                        AVAILABLE FOR SELECTED PROJECTS
+                    <span class="theme-text-secondary font-mono text-xs">
+                        {{ __('messages.contact_availability') }}
                     </span>
 
                 </div>
@@ -52,47 +50,45 @@
             {{-- Contact Information --}}
             <div class="lg:col-span-5">
 
-                <div class="rounded-2xl border border-white/10 bg-brand-900 p-8">
+                <div class="theme-border theme-card rounded-2xl border p-8">
 
-                    <p class="font-mono text-xs uppercase tracking-widest text-accent-400">
-                        Let's Work Together
+                    <p class="theme-accent font-mono text-xs uppercase tracking-widest">
+                        {{ __('messages.contact_card_eyebrow') }}
                     </p>
 
-                    <h3 class="mt-5 font-heading text-2xl font-bold text-white">
-                        Discuss Your Project
+                    <h3 class="theme-text-primary mt-5 font-heading text-2xl font-bold">
+                        {{ __('messages.contact_card_heading') }}
                     </h3>
 
-                    <p class="mt-4 text-sm leading-7 text-gray-400">
-                        Tell me about your project, technical requirements,
-                        or business challenges. Let's explore
-                        how I can help.
+                    <p class="theme-text-secondary mt-4 text-sm leading-7">
+                        {{ __('messages.contact_card_description') }}
                     </p>
 
                     {{-- Primary Contact: WhatsApp --}}
                     <a
-                        href="https://wa.me/6285856502569?text=Halo%20Riko%2C%20saya%20tertarik%20berdiskusi%20mengenai%20project%20dan%20layanan%20teknologi%20Anda."
+                        href="https://wa.me/6285856502569?text={{ rawurlencode(__('messages.contact_whatsapp_message')) }}"
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="Discuss a project with Riko on WhatsApp (opens in a new tab)"
+                        aria-label="{{ __('messages.contact_whatsapp_aria') }}"
                         class="mt-8 flex items-center justify-between rounded-lg bg-accent-600 px-6 py-4 text-sm font-semibold text-white transition-colors duration-300 hover:bg-accent-500 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
                     >
 
-                        <span>Discuss a Project on WhatsApp</span>
+                        <span>{{ __('messages.contact_whatsapp_label') }}</span>
 
                         <span aria-hidden="true">↗</span>
 
                     </a>
 
                     {{-- Secondary Contact: Email --}}
-                    <div class="mt-8 border-t border-white/10 pt-6">
+                    <div class="theme-border mt-8 border-t pt-6">
 
-                        <p class="font-mono text-xs uppercase tracking-widest text-gray-400">
-                            Email
+                        <p class="theme-text-secondary font-mono text-xs uppercase tracking-widest">
+                            {{ __('messages.contact_email_label') }}
                         </p>
 
                         <a
-                            href="mailto:rikokordako23@gmail.com?subject=Project%20Inquiry"
-                            class="mt-3 inline-block break-all text-sm text-gray-300 transition-colors duration-300 hover:text-accent-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
+                            href="mailto:rikokordako23@gmail.com?subject={{ rawurlencode(__('messages.contact_email_subject')) }}"
+                            class="theme-text-primary mt-3 inline-block break-all text-sm transition-colors duration-300 hover:theme-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
                         >
                             rikokordako23@gmail.com
                         </a>
@@ -100,9 +96,8 @@
                     </div>
 
                     {{-- Availability Note --}}
-                    <p class="mt-8 text-xs leading-6 text-gray-400">
-                        Project availability is considered based on
-                        scope, requirements, and schedule.
+                    <p class="theme-text-secondary mt-8 text-xs leading-6">
+                        {{ __('messages.contact_availability_note') }}
                     </p>
 
                 </div>
@@ -112,5 +107,4 @@
         </div>
 
     </div>
-
 </section>

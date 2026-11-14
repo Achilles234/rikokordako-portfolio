@@ -1,6 +1,6 @@
 
 {{-- Footer --}}
-<footer class="border-t border-white/10 bg-brand-950">
+<footer class="theme-border border-t theme-subtle">
 
     <div class="mx-auto max-w-7xl px-6 py-10 lg:px-12">
 
@@ -11,13 +11,13 @@
 
                 <a
                     href="#home"
-                    aria-label="Riko Kordako - Back to top"
-                    class="font-heading text-sm font-bold tracking-tight text-white transition-colors hover:text-accent-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
+                    aria-label="{{ __('messages.footer_brand_aria') }}"
+                    class="theme-text-primary inline-block font-heading text-sm font-bold tracking-tight transition-colors hover:theme-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
                 >
-                    RIKO KORDAKO<span class="text-accent-500">.</span>
+                    RIKO KORDAKO<span class="theme-accent">.</span>
                 </a>
 
-                <p class="mt-2 font-mono text-xs text-gray-400">
+                <p class="theme-text-secondary mt-2 font-mono text-xs">
                     Technology. Systems. Business.
                 </p>
 
@@ -25,57 +25,57 @@
 
             {{-- Footer Navigation --}}
             <nav
-                aria-label="Footer navigation"
+                aria-label="{{ __('messages.footer_nav_aria') }}"
                 class="flex flex-wrap gap-x-6 gap-y-3"
             >
 
                 <a
                     href="#home"
-                    class="text-xs text-gray-400 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
+                    class="theme-text-secondary text-xs transition-colors hover:theme-text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
                 >
-                    Home
+                    {{ __('messages.footer_nav_home') }}
                 </a>
 
                 <a
                     href="#about"
-                    class="text-xs text-gray-400 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
+                    class="theme-text-secondary text-xs transition-colors hover:theme-text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
                 >
-                    About
+                    {{ __('messages.footer_nav_about') }}
                 </a>
 
                 <a
                     href="#experience"
-                    class="text-xs text-gray-400 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
+                    class="theme-text-secondary text-xs transition-colors hover:theme-text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
                 >
-                    Experience
+                    {{ __('messages.footer_nav_experience') }}
                 </a>
 
                 <a
                     href="#projects"
-                    class="text-xs text-gray-400 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
+                    class="theme-text-secondary text-xs transition-colors hover:theme-text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
                 >
-                    Projects
+                    {{ __('messages.footer_nav_projects') }}
                 </a>
 
                 <a
                     href="#technology-lab"
-                    class="text-xs text-gray-400 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
+                    class="theme-text-secondary text-xs transition-colors hover:theme-text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
                 >
-                    Technology
+                    {{ __('messages.footer_nav_technology') }}
                 </a>
 
                 <a
                     href="#journal"
-                    class="text-xs text-gray-400 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
+                    class="theme-text-secondary text-xs transition-colors hover:theme-text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
                 >
-                    Journal
+                    {{ __('messages.footer_nav_journal') }}
                 </a>
 
                 <a
                     href="#contact"
-                    class="text-xs text-gray-400 transition-colors hover:text-accent-400 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
+                    class="theme-text-secondary text-xs transition-colors hover:theme-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-400"
                 >
-                    Contact
+                    {{ __('messages.footer_nav_contact') }}
                 </a>
 
             </nav>
@@ -83,10 +83,10 @@
         </div>
 
         {{-- Copyright --}}
-        <div class="mt-8 border-t border-white/10 pt-6">
+        <div class="theme-border mt-8 border-t pt-6">
 
-            <p class="font-mono text-xs leading-6 text-gray-400">
-                © {{ date('Y') }} Riko Kordako. All rights reserved.
+            <p class="theme-text-secondary font-mono text-xs leading-6">
+                © {{ date('Y') }} Riko Kordako. {{ __('messages.footer_rights') }}
             </p>
 
         </div>

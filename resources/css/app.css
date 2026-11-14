@@ -47,23 +47,241 @@
 
 /*
 |--------------------------------------------------------------------------
+| THEME TOKENS
+|--------------------------------------------------------------------------
+*/
+
+/* Dark Mode - Default */
+
+:root {
+
+    color-scheme: dark;
+
+    --page-background: #0B1120;
+    --section-background: #0B1120;
+    --surface-background: #111827;
+    --surface-elevated: #1F2937;
+
+    --text-primary: #FFFFFF;
+    --text-secondary: #9CA3AF;
+    --text-muted: #6B7280;
+
+    --border-primary: rgba(255, 255, 255, 0.10);
+    --border-secondary: rgba(255, 255, 255, 0.06);
+
+    --accent-primary: #60A5FA;
+    --accent-hover: #3B82F6;
+
+    --selection-background: #2563EB;
+    --selection-foreground: #FFFFFF;
+
+}
+
+/* Light Mode */
+
+html.light {
+
+    color-scheme: light;
+
+    --page-background: #F8FAFC;
+    --section-background: #F1F5F9;
+    --surface-background: #FFFFFF;
+    --surface-elevated: #E2E8F0;
+
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-muted: #64748B;
+
+    --border-primary: rgba(15, 23, 42, 0.12);
+    --border-secondary: rgba(15, 23, 42, 0.07);
+
+    --accent-primary: #0369A1;
+    --accent-hover: #075985;
+
+    --selection-background: #0369A1;
+    --selection-foreground: #FFFFFF;
+
+}
+
+/*
+|--------------------------------------------------------------------------
+| THEME TOGGLE ICONS
+|--------------------------------------------------------------------------
+*/
+
+html:not(.light) [data-theme-icon="moon"] {
+    display: none;
+}
+
+html.light [data-theme-icon="sun"] {
+    display: none;
+}
+
+/*
+|--------------------------------------------------------------------------
 | GLOBAL EXPERIENCE
 |--------------------------------------------------------------------------
 */
 
-:root {
-    color-scheme: dark;
-}
-
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 6rem;
 }
 
 body {
     min-width: 320px;
+    background-color: var(--page-background);
+    color: var(--text-primary);
 }
 
+#app {
+    min-height: 100vh;
+}
+
+/*
+|--------------------------------------------------------------------------
+| THEME TRANSITIONS
+|--------------------------------------------------------------------------
+*/
+
+body,
+#app {
+    transition:
+        background-color 250ms ease,
+        color 250ms ease;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| THEME COMPONENTS
+|--------------------------------------------------------------------------
+*/
+
+/* Header and Navigation */
+.theme-language-switcher {
+    background-color: var(--surface-background);
+    border-color: var(--border-primary);
+}
+
+.theme-language-active {
+    background-color: color-mix(
+        in srgb,
+        var(--accent-primary) 15%,
+        transparent
+    );
+    color: var(--accent-primary);
+}
+
+.theme-language-inactive {
+    color: var(--text-secondary);
+}
+
+.theme-language-inactive:hover {
+    color: var(--accent-primary);
+}
+
+.theme-header {
+    background-color: color-mix(
+        in srgb,
+        var(--page-background) 90%,
+        transparent
+    );
+    border-color: var(--border-primary);
+}
+
+/* Dropdown and Elevated Surfaces */
+
+.theme-dropdown {
+    background-color: var(--surface-background);
+    border-color: var(--border-primary);
+}
+
+/* Primary Text */
+.theme-accent {
+    color: var(--accent-primary);
+}
+.theme-text-primary {
+    color: var(--text-primary);
+}
+
+/* Secondary Text */
+
+.theme-text-secondary {
+    color: var(--text-secondary);
+}
+
+/* Muted Text */
+
+.theme-text-muted {
+    color: var(--text-muted);
+}
+
+/* Borders */
+
+.theme-border {
+    border-color: var(--border-primary);
+}
+
+/* Subtle Background */
+
+.theme-subtle {
+    background-color: var(--surface-background);
+}
+
+/* Theme Toggle Button */
+
+.theme-toggle {
+    color: var(--text-secondary);
+    border-color: var(--border-primary);
+}
+
+.theme-toggle:hover {
+    color: var(--accent-primary);
+    border-color: var(--accent-primary);
+}
+
+.theme-card {
+    background-color: var(--surface-background);
+}
+
+.theme-card:hover {
+    background-color: var(--surface-elevated);
+}
+/*
+|--------------------------------------------------------------------------
+| PROJECT COMPONENTS
+|--------------------------------------------------------------------------
+*/
+
+.theme-project-visual {
+    background-color: var(--surface-background);
+    border-color: var(--border-primary);
+}
+
+.theme-project-glow {
+    background: linear-gradient(
+        135deg,
+        color-mix(in srgb, var(--accent-primary) 10%, transparent),
+        transparent 65%
+    );
+}
+
+.theme-accent-divider {
+    background-color: color-mix(
+        in srgb,
+        var(--accent-primary) 50%,
+        transparent
+    );
+}
+
+.theme-tag {
+    border: 1px solid var(--border-primary);
+    border-radius: 9999px;
+    padding: 0.5rem 0.75rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+}
 /*
 |--------------------------------------------------------------------------
 | ACCESSIBILITY
@@ -71,20 +289,23 @@ body {
 */
 
 /* Keep anchor targets visible below the sticky navigation */
+
 :target {
-    scroll-margin-top: 6rem;
+    scroll-margin-top: 7rem;
 }
 
 /* Visible focus when main content receives keyboard navigation */
+
 #main-content:focus {
-    outline: 2px solid var(--color-accent-400);
+    outline: 2px solid var(--accent-primary);
     outline-offset: 4px;
 }
 
 /* Subtle text selection */
+
 ::selection {
-    background-color: var(--color-accent-600);
-    color: #FFFFFF;
+    background-color: var(--selection-background);
+    color: var(--selection-foreground);
 }
 
 /*
@@ -109,3 +330,78 @@ body {
     }
 
 }
+
+/*
+|--------------------------------------------------------------------------
+| JOURNAL COMPONENTS
+|--------------------------------------------------------------------------
+*/
+
+.theme-journal-card {
+    background-color: var(--surface-background);
+    border-color: var(--border-primary);
+}
+
+.theme-journal-card:hover {
+    border-color: color-mix(
+        in srgb,
+        var(--accent-primary) 40%,
+        transparent
+    );
+}
+
+
+
+/* =========================================================
+   HERO PORTRAIT - SMOOTH NATURAL FEATHER
+   ========================================================= */
+
+.hero-portrait-image {
+    display: block;
+    -webkit-mask-image:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.15) 5%,
+            #000 22%,
+            #000 76%,
+            rgba(0, 0, 0, 0.85) 88%,
+            rgba(0, 0, 0, 0.35) 96%,
+            transparent 100%
+        ),
+        linear-gradient(
+            to right,
+            transparent 0%,
+            rgba(0, 0, 0, 0.2) 5%,
+            #000 24%,
+            #000 76%,
+            rgba(0, 0, 0, 0.2) 95%,
+            transparent 100%
+        );
+
+    -webkit-mask-composite: source-in;
+
+    mask-image:
+        linear-gradient(
+            to bottom,
+            transparent 0%,
+            rgba(0, 0, 0, 0.15) 5%,
+            #000 22%,
+            #000 76%,
+            rgba(0, 0, 0, 0.85) 88%,
+            rgba(0, 0, 0, 0.35) 96%,
+            transparent 100%
+        ),
+        linear-gradient(
+            to right,
+            transparent 0%,
+            rgba(0, 0, 0, 0.2) 5%,
+            #000 24%,
+            #000 76%,
+            rgba(0, 0, 0, 0.2) 95%,
+            transparent 100%
+        );
+
+    mask-composite: intersect;
+}
+

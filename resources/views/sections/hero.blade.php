@@ -7,23 +7,25 @@
         {{-- Hero Content --}}
         <div class="relative z-10">
 
-            <p class="mb-8 font-mono text-xs uppercase tracking-[0.3em] text-accent-400">
-                Technology · Systems · Business
+            <p class="theme-accent mb-8 font-mono text-xs uppercase tracking-[0.3em]">
+                {{ __('messages.hero_eyebrow') }}
             </p>
 
-            <h1 class="font-heading text-6xl font-extrabold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
+            <h1 class="theme-text-primary font-heading text-6xl font-extrabold leading-[1.05] tracking-tight md:text-7xl lg:text-8xl">
                 RIKO<br>
-                KORDAKO<span class="text-accent-500">.</span>
+                KORDAKO<span class="theme-accent">.</span>
             </h1>
 
             <div class="mt-8 max-w-xl">
-                <p class="text-xl font-medium leading-relaxed text-gray-200 md:text-2xl">
-                    Technology. Systems. Business.
+
+                <p class="theme-text-primary text-xl font-medium leading-relaxed md:text-2xl">
+                    {{ __('messages.hero_tagline') }}
                 </p>
 
-                <p class="mt-5 max-w-lg text-base leading-8 text-gray-400 md:text-lg">
-                    A journey shaped by technology, real-world experience, and continuous learning.
+                <p class="theme-text-secondary mt-5 max-w-lg text-base leading-8 md:text-lg">
+                    {{ __('messages.hero_description') }}
                 </p>
+
             </div>
 
         </div>
@@ -33,27 +35,15 @@
 
             <div class="relative aspect-[4/5] w-full">
 
-               <img
+                <img
                     src="{{ asset('images/rico.png') }}"
                     alt="Riko Kordako"
-                    class="h-full w-full object-cover object-center"
+                    class="hero-portrait-image h-full w-full object-cover object-center"
                     fetchpriority="high"
                     decoding="async"
                     width="800"
                     height="1000"
                 >
-
-                {{-- Top Blend --}}
-                <div class="pointer-events-none absolute inset-x-0 top-0 h-1/4 bg-gradient-to-b from-brand-950 to-transparent"></div>
-
-                {{-- Left Blend --}}
-                <div class="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-brand-950 to-transparent"></div>
-
-                {{-- Right Blend --}}
-                <div class="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-brand-950 to-transparent"></div>
-
-                {{-- Bottom Blend --}}
-                <div class="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-t from-brand-950 to-transparent"></div>
 
             </div>
 
