@@ -291,7 +291,7 @@ body,
 /* Keep anchor targets visible below the sticky navigation */
 
 :target {
-    scroll-margin-top: 4rem;
+    scroll-margin-top: 4 rem;
 }
 
 /* Visible focus when main content receives keyboard navigation */
