@@ -66,7 +66,7 @@
 
                     {{-- Primary Contact: WhatsApp --}}
                     <a
-                        href="https://wa.me/6285856502569?text={{ rawurlencode(__('messages.contact_whatsapp_message')) }}"
+                        href="https://wa.me/6285846502569?text={{ rawurlencode(__('messages.contact_whatsapp_message')) }}"
                         target="_blank"
                         rel="noopener noreferrer"
                         aria-label="{{ __('messages.contact_whatsapp_aria') }}"
