@@ -12,3 +12,11 @@ Route::get('/{locale}', function (string $locale) {
     ->whereIn('locale', ['en', 'id'])
     ->middleware(SetLocale::class)
     ->name('home');
+
+// ATCS Subang Case Study
+Route::get('/{locale}/projects/atcs-subang', function (string $locale) {
+    return view('projects.atcs-subang');
+})
+    ->whereIn('locale', ['en', 'id'])
+    ->middleware(SetLocale::class)
+    ->name('projects.atcs-subang');

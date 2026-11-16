@@ -56,12 +56,16 @@ return [
     'experience_independent_company' => 'Independent Technical Practice',
     'experience_independent_description' => 'Provided independent technical services covering PC assembly, hardware troubleshooting, network installation, configuration, and general IT support. Worked on various technical needs and practical solutions for individual and business environments.',
 
-    // ATCS Project
-    'experience_project_engagement' => 'Project Engagement',
-    'experience_atcs_role' => 'ATCS Monitoring System Project',
-    'experience_atcs_location' => 'Subang City, Indonesia',
-    'experience_atcs_description_1' => 'Developed a CCTV monitoring dashboard and supervised field deployment activities for an Area Traffic Control System project.',
-    'experience_atcs_description_2' => 'Contributed to server configuration, network infrastructure, Hikvision surveillance integration, and video wall deployment. Also processed and organized camera-generated event data for operational monitoring and reporting.',
+   
+    
+     // ATCS Experience
+    'experience_project_engagement' => 'Project-Based Engagement',
+    'experience_atcs_role' => 'Independent Technical Consultant',
+    'experience_atcs_location' => 'ATCS Monitoring System Project · Subang, Indonesia',
+    'experience_atcs_description_1' => 'Designed a Laravel-based web dashboard for an Area Traffic Control System (ATCS) project in Subang, Indonesia. Engaged by PT IMM as an independent technical consultant through a project-based Purchase Order (PO).',
+    'experience_atcs_description_2' => 'Configured and installed the server infrastructure and operator workstations, and configured the video wall. Supervised field installation work carried out by the network team and provided hands-on assistance with on-site system and device configuration when needed, including support for the Hikvision iVMS CCTV monitoring application.',
+
+
 
     // Honda
     'experience_honda_role' => 'Sales Representative',

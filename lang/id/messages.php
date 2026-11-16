@@ -56,12 +56,12 @@ return [
     'experience_independent_company' => 'Praktik Layanan Teknis Independen',
     'experience_independent_description' => 'Menyediakan layanan teknis independen yang mencakup perakitan PC, penanganan masalah perangkat keras, instalasi dan konfigurasi jaringan, serta dukungan TI umum. Menangani berbagai kebutuhan teknis dan solusi praktis untuk individu maupun lingkungan bisnis.',
 
-    // Proyek ATCS
-    'experience_project_engagement' => 'Keterlibatan Proyek',
-    'experience_atcs_role' => 'Proyek Sistem Monitoring ATCS',
-    'experience_atcs_location' => 'Kota Subang, Indonesia',
-    'experience_atcs_description_1' => 'Mengembangkan dashboard pemantauan CCTV dan mengawasi kegiatan implementasi di lapangan untuk proyek Area Traffic Control System.',
-    'experience_atcs_description_2' => 'Berkontribusi dalam konfigurasi server, infrastruktur jaringan, integrasi sistem pengawasan Hikvision, dan implementasi video wall. Selain itu, mengolah dan mengorganisasi data kejadian yang dihasilkan kamera untuk kebutuhan pemantauan operasional dan pelaporan.',
+     // Pengalaman Proyek ATCS
+    'experience_project_engagement' => 'Keterlibatan Berbasis Proyek',
+    'experience_atcs_role' => 'Konsultan Teknis Independen',
+    'experience_atcs_location' => 'Proyek Sistem Pemantauan ATCS · Subang, Indonesia',
+    'experience_atcs_description_1' => 'Merancang dashboard web berbasis Laravel untuk proyek Area Traffic Control System (ATCS) di Kabupaten Subang, Indonesia. Terlibat sebagai konsultan teknis independen melalui Purchase Order (PO) berbasis proyek dari PT IMM.',
+    'experience_atcs_description_2' => 'Melakukan konfigurasi dan instalasi infrastruktur server serta workstation operator, termasuk konfigurasi video wall. Mengawasi proses instalasi di lapangan yang dikerjakan oleh tim jaringan dan turut membantu konfigurasi sistem maupun perangkat secara langsung di lokasi sesuai kebutuhan, termasuk dukungan konfigurasi pemantauan CCTV Hikvision melalui aplikasi iVMS berbasis Windows.',
 
     // Honda
     'experience_honda_role' => 'Sales Representative',
@@ -91,18 +91,22 @@ return [
     'projects_heading' => 'Karya Pilihan',
     'projects_intro' => 'Kumpulan proyek teknis dan pencapaian yang dibentuk melalui eksperimen, pemecahan masalah, dan penerapan di dunia nyata.',
 
+   
+   
     // Proyek ATCS
     'project_atcs_category' => 'Infrastruktur · Integrasi Sistem',
     'project_atcs_visual_subtitle' => 'Sistem Pemantauan & Pengendalian CCTV',
-    'project_atcs_visual_caption' => 'Proyek pemantauan CCTV dan integrasi infrastruktur ATCS di Subang, 2022.',
+    'project_atcs_visual_caption' => 'Pusat pemantauan CCTV dan infrastruktur pendukung ATCS di Subang, Indonesia, tahun 2022.',
     'project_atcs_location' => '01 / 2022 · Subang, Indonesia',
     'project_atcs_title' => 'Sistem Pemantauan CCTV ATCS',
-    'project_atcs_description_1' => 'Mengembangkan dashboard pemantauan CCTV dan mengawasi kegiatan implementasi di lapangan untuk proyek Area Traffic Control System di Subang, Indonesia.',
-    'project_atcs_description_2' => 'Berkontribusi dalam konfigurasi server, infrastruktur jaringan, integrasi sistem pengawasan Hikvision, dan implementasi video wall. Selain itu, mengolah dan mengorganisasi data kejadian yang dihasilkan kamera untuk kebutuhan pemantauan operasional dan pelaporan.',
-    'project_atcs_scope_dashboard' => 'Pengembangan Dashboard',
-    'project_atcs_scope_cctv' => 'Integrasi CCTV',
-    'project_atcs_scope_network' => 'Server & Jaringan',
-    'project_atcs_scope_video_wall' => 'Video Wall',
+        'project_atcs_description_1' => 'Merancang dashboard web berbasis Laravel untuk proyek Area Traffic Control System (ATCS) di Kabupaten Subang, Indonesia. Terlibat sebagai Konsultan Teknis Independen melalui Purchase Order (PO) berbasis proyek dari PT IMM.',
+    'project_atcs_description_2' => 'Melakukan konfigurasi dan instalasi infrastruktur server serta workstation operator, termasuk konfigurasi video wall. Mengawasi proses instalasi di lapangan yang dikerjakan oleh tim jaringan dan turut membantu konfigurasi sistem maupun perangkat secara langsung di lokasi sesuai kebutuhan, termasuk dukungan konfigurasi pemantauan CCTV Hikvision melalui aplikasi iVMS berbasis Windows.',
+    'project_atcs_scope_dashboard' => 'Dashboard Laravel',
+    'project_atcs_scope_cctv' => 'Implementasi CCTV',
+    'project_atcs_scope_network' => 'Infrastruktur Server',
+    'project_atcs_scope_video_wall' => 'Konfigurasi Video Wall',
+
+
 
     // Proyek Overclocking
     'project_overclocking_category' => 'Perangkat Keras · Optimasi Performa',
