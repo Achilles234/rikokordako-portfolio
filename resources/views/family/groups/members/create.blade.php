@@ -11,7 +11,7 @@
     $isEnglish = session('family_locale', 'id') === 'en';
 @endphp
 
-<div class="min-h-screen" style="background: var(--family-background);">
+<div class="h-screen overflow-y-auto overflow-x-hidden" style="background: var(--family-background);">
 
     <header class="sticky top-0 z-20 border-b px-4 sm:px-6 lg:px-10"
         style="background: var(--family-surface); border-color: var(--family-border);">

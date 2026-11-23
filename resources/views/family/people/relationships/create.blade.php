@@ -4,20 +4,20 @@
 @section('title', 'Tambah Hubungan Keluarga')
 
 @section('content')
-<div class="min-h-screen" style="background: var(--family-background);">
-    <div class="flex min-h-screen">
+<div class="h-screen overflow-hidden" style="background: var(--family-background); color: var(--family-text-primary);">
+    <div class="flex h-full min-h-0">
         @include('family.partials.sidebar', [
             'navigationGroup' => $group,
             'activeMenu' => 'people',
         ])
 
-        <div class="min-w-0 flex-1">
+       <div class="flex min-w-0 min-h-0 flex-1 flex-col overflow-hidden">
             @include('family.partials.topbar', [
                 'navigationGroup' => $group,
             ])
 
-            <main id="family-main" class="px-4 py-6 sm:px-6 lg:px-8"
-                  style="color: var(--family-text-primary);">
+            <main id="family-main" class="min-h-0 flex-1 overflow-y-auto overflow-x-hidden px-4 py-6 sm:px-6 lg:px-8"
+      style="color: var(--family-text-primary);">
                 <div class="mx-auto max-w-3xl space-y-6">
 
                     <div>
