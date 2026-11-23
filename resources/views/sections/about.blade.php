@@ -89,5 +89,7 @@
         </div>
 
     </div>
-  {{-- Deployment Test: About Section --}}
+<p class="theme-accent font-mono text-xs">
+    DEPLOYMENT TEST BERHASIL
+</p>
 </section>
