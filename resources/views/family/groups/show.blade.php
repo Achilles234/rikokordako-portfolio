@@ -21,14 +21,15 @@
 
 @endphp
 
-<div class="min-h-screen" style="background: var(--family-background);">
+<div class="family-app-layout flex h-screen overflow-hidden"
+    style="background: var(--family-background);">
 
-    <div class="flex min-h-screen">
+    <div class="flex h-full min-h-0 w-full">
 
-       @include('family.partials.sidebar')
+        @include('family.partials.sidebar')
 
         {{-- Main area --}}
-        <div class="min-w-0 flex-1">
+        <div class="flex min-h-0 min-w-0 flex-1 flex-col">
 
            {{-- Shared topbar --}}
                 @include('family.partials.topbar', [
@@ -36,8 +37,8 @@
                 ])
 
             {{-- Page content --}}
-            <main id="family-main"
-                class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-10 lg:py-10">
+           <main id="family-main"
+              class="family-main-content min-h-0 min-w-0 flex-1 overflow-y-auto overflow-x-hidden px-4 py-8 sm:px-6 lg:px-10 lg:py-10">
                 @if (session('success'))
                     <div class="mb-6 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-5 py-4 text-sm font-medium text-emerald-600">
                         {{ session('success') }}
@@ -94,7 +95,7 @@
                      <div class="flex flex-wrap items-center gap-3">
                             @if ($canManageDetails && $group->status === 'active')
                                 <a href="{{ route('family.groups.edit', $group->id) }}"
-                                   class="family-leaf-button inline-flex w-fit items-center justify-center gap-2"
+                                   class="family-leaf-button inline-flex w-fit items-center justify-center gap-2">
                                     <span aria-hidden="true">✎</span>
                                     {{ $isEnglish ? 'Edit Group' : 'Edit Grup' }}
                                 </a>
