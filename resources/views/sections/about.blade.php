@@ -89,7 +89,5 @@
         </div>
 
     </div>
-<p class="theme-accent font-mono text-xs">
-    DEPLOYMENT TEST BERHASIL
-</p>
+
 </section>
