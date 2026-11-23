@@ -9,8 +9,8 @@
         ->isSuperAdmin(auth('family')->user());
 @endphp
 
-<div class="min-h-screen" style="background: var(--family-background); color: var(--family-text-primary);">
-    <div class="flex min-h-screen">
+<div class="h-screen overflow-hidden" style="background: var(--family-background); color: var(--family-text-primary);">
+    <div class="flex h-full min-h-0">
 
         {{-- Desktop Sidebar --}}
         @include('family.partials.sidebar', [
@@ -21,14 +21,14 @@
         ])
 
         {{-- Main Content --}}
-        <div class="min-w-0 flex-1">
+        <div class="flex min-w-0 min-h-0 flex-1 flex-col overflow-hidden">
 
             {{-- Topbar --}}
             @include('family.partials.topbar', [
                 'navigationGroup' => $group,
             ])
 
-            <main class="px-4 py-6 sm:px-6 lg:px-8">
+         <main class="min-h-0 flex-1 overflow-y-auto overflow-x-hidden px-4 py-6 sm:px-6 lg:px-8">
                 <div class="mx-auto max-w-3xl space-y-6">
 
                     <div>
