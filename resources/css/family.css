@@ -1,0 +1,879 @@
+
+/*
+|--------------------------------------------------------------------------
+| FAMILY PORTAL - DESIGN SYSTEM
+|--------------------------------------------------------------------------
+*/
+
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../views/**/*.blade.php';
+@source '../js/**/*.js';
+
+/*
+|--------------------------------------------------------------------------
+| FAMILY PORTAL THEME
+|--------------------------------------------------------------------------
+*/
+
+:root {
+    color-scheme: dark;
+
+    /* BLACKWOOD - DARK */
+    --family-background: #17120F;
+    --family-surface: #211913;
+    --family-surface-elevated: #302319;
+
+    --family-text-primary: #F5EBDD;
+    --family-text-secondary: #B9A58F;
+
+    --family-border: rgba(211, 174, 128, 0.16);
+
+    --family-accent: #C18A52;
+    --family-accent-hover: #D6A16B;
+
+    /* Wood design tokens */
+    --family-wood-light: #D9B98D;
+    --family-wood-medium: #805735;
+    --family-wood-dark: #392719;
+    --family-wood-grain: rgba(255, 220, 170, 0.07);
+    --family-panel-shadow: 0 8px 24px rgba(0, 0, 0, 0.24);
+
+    /* Tree card - Blackwood */
+    --family-tree-wood-face:
+        linear-gradient(135deg, #503923 0%, #302116 52%, #49321F 100%);
+    --family-tree-wood:
+        repeating-linear-gradient(
+            91deg,
+            transparent 0 9px,
+            rgba(255, 220, 170, .07) 9px 10px,
+            transparent 10px 23px
+        );
+
+    --font-family-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+html.family-theme-light {
+    color-scheme: light;
+
+    /* NATURAL OAK - LIGHT */
+    --family-background: #F1E5D2;
+    --family-surface: #FBF6ED;
+    --family-surface-elevated: #E8D5B8;
+
+    --family-text-primary: #382719;
+    --family-text-secondary: #786047;
+
+    --family-border: rgba(100, 66, 36, 0.16);
+
+    --family-accent: #986536;
+    --family-accent-hover: #79502B;
+
+    /* Wood design tokens */
+    --family-wood-light: #E8CC9F;
+    --family-wood-medium: #B88B59;
+    --family-wood-dark: #704B2D;
+    --family-wood-grain: rgba(111, 72, 37, 0.07);
+    --family-panel-shadow: 0 8px 24px rgba(83, 56, 31, 0.10);
+
+    /* Tree card - Natural Oak */
+    --family-tree-wood-face:
+        linear-gradient(135deg, #E8CC9F 0%, #D3AC79 52%, #E0BD8D 100%);
+    --family-tree-wood:
+        repeating-linear-gradient(
+            91deg,
+            transparent 0 9px,
+            rgba(111, 72, 37, .08) 9px 10px,
+            transparent 10px 23px
+        );
+}
+
+html.family-theme-dark {
+    color-scheme: dark;
+}
+
+/*
+|--------------------------------------------------------------------------
+| FAMILY PORTAL BASE
+|--------------------------------------------------------------------------
+*/
+
+body.family-portal {
+    min-width: 320px;
+    background: var(--family-background);
+    color: var(--family-text-primary);
+    font-family: var(--font-family-sans);
+}
+/*
+|--------------------------------------------------------------------------
+| FAMILY PORTAL - VIEWPORT & SCROLL MANAGEMENT
+|--------------------------------------------------------------------------
+*/
+
+html,
+body.family-portal {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+body.family-portal {
+    min-width: 320px;
+}
+
+body.family-portal #family-app {
+    width: 100%;
+    height: 100%;
+    min-height: 0;
+    overflow: hidden;
+}
+
+body.family-portal .family-app-layout {
+    width: 100%;
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+}
+
+body.family-portal .family-main-content {
+    min-height: 0;
+    min-width: 0;
+    overflow-x: hidden;
+    overflow-y: auto;
+    overscroll-behavior-y: contain;
+}
+
+/*
+|--------------------------------------------------------------------------
+| FAMILY PORTAL - SIDEBAR AUTO HIDE (SMOOTH PUSH)
+|--------------------------------------------------------------------------
+*/
+
+@media (min-width: 1024px) {
+    body.family-portal [data-family-sidebar] {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        flex: 0 0 auto;
+        width: 16rem;
+        min-width: 0;
+        overflow: visible;
+
+        transition:
+            width 950ms cubic-bezier(0.22, 1, 0.36, 1),
+            border-color 950ms ease,
+            box-shadow 950ms ease;
+
+        will-change: width;
+    }
+
+    html.family-sidebar-unpinned body.family-portal [data-family-sidebar] {
+        width: 0;
+        border-right-color: transparent;
+        box-shadow: none;
+    }
+
+    html.family-sidebar-unpinned body.family-portal.family-sidebar-peek [data-family-sidebar] {
+        width: 16rem;
+        border-right-color: var(--family-border);
+        box-shadow: 8px 0 30px rgba(0, 0, 0, 0.12);
+    }
+
+    html.family-sidebar-pinned body.family-portal [data-family-sidebar] {
+        width: 16rem;
+        border-right-color: var(--family-border);
+        box-shadow: none;
+    }
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| REDUCED MOTION
+|--------------------------------------------------------------------------
+*/
+
+@media (prefers-reduced-motion: reduce) {
+    body.family-portal [data-family-sidebar] {
+        transition: none;
+    }
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| FAMILY PORTAL - REAL WOOD SIDEBAR
+|--------------------------------------------------------------------------
+*/
+
+body.family-portal [data-family-sidebar] {
+    background-color: #B88B59;
+    background-image: url('/images/family/sidebar-natural-oak.webp') !important;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* LIGHT MODE - NATURAL OAK */
+html.family-theme-light body.family-portal [data-family-sidebar] {
+    background-color: #D9B98D;
+    background-image: url('/images/family/sidebar-natural-oak.webp') !important;
+}
+
+/* DARK MODE - BLACKWOOD */
+html.family-theme-dark body.family-portal [data-family-sidebar] {
+    background-color: #392719;
+    background-image: url('/images/family/sidebar-blackwood.webp') !important;
+}
+
+/* MENU HOVER */
+body.family-portal [data-family-sidebar] a {
+    transition:
+        background-color 200ms ease,
+        color 200ms ease,
+        box-shadow 200ms ease;
+}
+/*
+|--------------------------------------------------------------------------
+| SIDEBAR MENU - WOOD CONTRAST
+|--------------------------------------------------------------------------
+*/
+
+/* DARK - BLACKWOOD */
+html.family-theme-dark body.family-portal
+[data-family-sidebar] a {
+    color: #F5E6D0;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, .85);
+}
+
+html.family-theme-dark body.family-portal
+[data-family-sidebar] a:hover {
+    background: rgba(255, 225, 185, .13);
+    color: #FFFFFF;
+}
+
+/* LIGHT - NATURAL OAK */
+html.family-theme-light body.family-portal
+[data-family-sidebar] a {
+    color: #49301D;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, .65);
+}
+
+html.family-theme-light body.family-portal
+[data-family-sidebar] a:hover {
+    background: rgba(91, 56, 28, .12);
+    color: #2F1D10;
+}
+
+/* MENU AKTIF - KEDUA TEMA */
+body.family-portal [data-family-sidebar] a[aria-current="page"] {
+    border-radius: 8px;
+    font-weight: 700;
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, .15),
+        0 2px 6px rgba(0, 0, 0, .12);
+}
+
+html.family-theme-dark body.family-portal
+[data-family-sidebar] a[aria-current="page"] {
+    background: rgba(20, 12, 7, .48);
+    color: #FFD69C;
+}
+
+html.family-theme-light body.family-portal
+[data-family-sidebar] a[aria-current="page"] {
+    background: rgba(255, 248, 235, .78);
+    color: #70451F;
+}
+
+/* SIDEBAR TYPOGRAPHY - STRONG CONTRAST */
+
+body.family-portal [data-family-sidebar] a {
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition:
+        background-color 200ms ease,
+        color 200ms ease,
+        box-shadow 200ms ease;
+}
+
+/* BLACKWOOD */
+html.family-theme-dark body.family-portal
+[data-family-sidebar] a {
+    color: #FFF3DF;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.95);
+}
+
+/* NATURAL OAK */
+html.family-theme-light body.family-portal
+[data-family-sidebar] a {
+    color: #382313;
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.8);
+}
+
+/* ACTIVE MENU */
+body.family-portal [data-family-sidebar] a[aria-current="page"] {
+    font-weight: 750;
+}
+/* BLACKWOOD - DEEP CARVED WOOD */
+html.family-theme-dark body.family-portal
+[data-family-sidebar] {
+    background-color: #160D08;
+
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(8, 4, 2, 0.48) 0%,
+            rgba(12, 6, 3, 0.72) 50%,
+            rgba(5, 3, 2, 0.62) 100%
+        ),
+        linear-gradient(
+            105deg,
+            rgba(255, 220, 170, 0.12) 0%,
+            transparent 18%,
+            rgba(0, 0, 0, 0.22) 48%,
+            transparent 72%,
+            rgba(255, 220, 170, 0.06) 100%
+        ),
+        url('/images/family/sidebar-blackwood.webp') !important;
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* NATURAL OAK - STRONG TYPOGRAPHY */
+
+html.family-theme-light body.family-portal
+[data-family-sidebar] a {
+    color: #301B0D !important;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.015em;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
+}
+
+/* MENU HOVER */
+html.family-theme-light body.family-portal
+[data-family-sidebar] a:hover {
+    color: #1D1008 !important;
+    background: rgba(75, 43, 19, 0.14);
+}
+
+/* MENU AKTIF */
+html.family-theme-light body.family-portal
+[data-family-sidebar] a[aria-current="page"] {
+    color: #211207 !important;
+    font-weight: 800;
+    background: rgba(255, 248, 235, 0.82);
+    box-shadow:
+        inset 0 1px 2px rgba(255, 255, 255, 0.8),
+        0 2px 5px rgba(70, 42, 20, 0.16);
+}
+
+/*
+|--------------------------------------------------------------------------
+| FAMILY SIDEBAR - NATURAL LIVE WOOD EDGE
+|--------------------------------------------------------------------------
+*/
+
+@media (min-width: 1024px) {
+
+    body.family-portal [data-family-sidebar] {
+        clip-path: polygon(
+            0 0,
+            100% 0,
+            98.5% 7%,
+            100% 15%,
+            97.5% 24%,
+            99.5% 34%,
+            97% 43%,
+            100% 53%,
+            97.5% 63%,
+            99.5% 73%,
+            97% 83%,
+            99% 92%,
+            97.5% 100%,
+            0 100%
+        );
+
+        filter: drop-shadow(4px 0 5px rgba(0, 0, 0, 0.22));
+    }
+}
+
+/*
+|--------------------------------------------------------------------------
+| FAMILY SIDEBAR - WOOD BRAND IDENTITY
+|--------------------------------------------------------------------------
+*/
+
+/* ICON CONTAINER - DEFAULT */
+body.family-portal [data-family-sidebar] > div:first-child
+> div:first-child > div:first-child {
+    background: linear-gradient(
+        145deg,
+        #805735,
+        #392719
+    ) !important;
+
+    color: #F2D09A !important;
+    border: 1px solid rgba(226, 184, 119, .45);
+    box-shadow:
+        inset 0 1px 2px rgba(255, 235, 195, .25),
+        0 3px 8px rgba(0, 0, 0, .22);
+}
+
+/* DARK - BLACKWOOD */
+html.family-theme-dark body.family-portal
+[data-family-sidebar] > div:first-child
+> div:first-child > div:first-child {
+    background: linear-gradient(
+        145deg,
+        #49301D,
+        #1C1009
+    ) !important;
+
+    color: #E9BD7C !important;
+}
+
+/* LIGHT - NATURAL OAK */
+html.family-theme-light body.family-portal
+[data-family-sidebar] > div:first-child
+> div:first-child > div:first-child {
+    background: linear-gradient(
+        145deg,
+        #C49A65,
+        #80532D
+    ) !important;
+
+    color: #FFF0D3 !important;
+}
+
+/* BRAND TITLE */
+body.family-portal [data-family-sidebar] > div:first-child
+> div:first-child > div:last-child p:first-child {
+    font-weight: 800;
+    letter-spacing: .015em;
+}
+
+/* PIN BUTTON - REMOVE BLUE HOVER */
+body.family-portal [data-family-sidebar]
+[data-family-sidebar-pin]:hover {
+    background: rgba(190, 145, 86, .18) !important;
+    color: var(--family-accent-hover) !important;
+}
+
+/* =========================================
+   FAMILY PORTAL — WOOD CONTENT BACKGROUND
+   ========================================= */
+
+/* Dark theme: Blackwood */
+html.family-theme-dark body.family-portal #family-main {
+    background-color: #17100B;
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(15, 9, 5, 0.88) 0%,
+            rgba(20, 12, 7, 0.91) 50%,
+            rgba(12, 7, 4, 0.88) 100%
+        ),
+        url('/images/family/sidebar-blackwood.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* Light theme: Natural Oak */
+html.family-theme-light body.family-portal #family-main {
+    background-color: #E8D5B8;
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(248, 239, 222, 0.58) 0%,
+            rgba(241, 229, 210, 0.64) 50%,
+            rgba(248, 239, 222, 0.58) 100%
+        ),
+        url('/images/family/sidebar-natural-oak.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+/*
+|--------------------------------------------------------------------------
+| FAMILY SIDEBAR - WOODEN SCROLLBAR
+|--------------------------------------------------------------------------
+*/
+
+/* DEFAULT - BLACKWOOD */
+body.family-portal [data-family-sidebar] nav {
+    scrollbar-width: thin;
+    scrollbar-color: #805735 rgba(35, 22, 12, 0.35);
+}
+
+/* CHROME, EDGE, SAFARI */
+body.family-portal [data-family-sidebar] nav::-webkit-scrollbar {
+    width: 7px;
+}
+
+body.family-portal [data-family-sidebar] nav::-webkit-scrollbar-track {
+    background: rgba(35, 22, 12, 0.35);
+    border-radius: 10px;
+}
+
+body.family-portal [data-family-sidebar] nav::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        #805735,
+        #49301D,
+        #211309
+    );
+    border-radius: 10px;
+    border: 1px solid rgba(217, 185, 141, 0.2);
+}
+
+body.family-portal [data-family-sidebar] nav::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        180deg,
+        #D9B98D,
+        #B88B59,
+        #805735
+    );
+}
+
+/* LIGHT - NATURAL OAK */
+html.family-theme-light body.family-portal
+[data-family-sidebar] nav {
+    scrollbar-color: #B88B59 rgba(112, 75, 42, 0.12);
+}
+
+html.family-theme-light body.family-portal
+[data-family-sidebar] nav::-webkit-scrollbar-track {
+    background: rgba(112, 75, 42, 0.12);
+}
+
+html.family-theme-light body.family-portal
+[data-family-sidebar] nav::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        #E8CC9F,
+        #B88B59,
+        #805735
+    );
+    border-color: rgba(112, 75, 42, 0.25);
+}
+
+html.family-theme-light body.family-portal
+[data-family-sidebar] nav::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        180deg,
+        #F0DDBB,
+        #C49A65,
+        #986536
+    );
+}
+/*
+|--------------------------------------------------------------------------
+| FAMILY TOPBAR - BLACKWOOD & NATURAL OAK
+|--------------------------------------------------------------------------
+*/
+
+/* DEFAULT TOPBAR */
+body.family-portal [data-family-topbar] {
+    background-color: var(--family-surface);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.10);
+    transition:
+        background-color 350ms ease,
+        border-color 350ms ease,
+        box-shadow 350ms ease;
+}
+
+/* BLACKWOOD */
+html.family-theme-dark body.family-portal [data-family-topbar] {
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(12, 7, 4, 0.82),
+            rgba(35, 22, 13, 0.91),
+            rgba(12, 7, 4, 0.82)
+        ),
+        url('/images/family/sidebar-blackwood.webp');
+}
+
+/* NATURAL OAK */
+html.family-theme-light body.family-portal [data-family-topbar] {
+    background-image:
+        linear-gradient(
+            90deg,
+            rgba(248, 239, 222, 0.88),
+            rgba(232, 213, 184, 0.83),
+            rgba(248, 239, 222, 0.88)
+        ),
+        url('/images/family/sidebar-natural-oak.webp');
+}
+
+/* WOODEN HOVER */
+body.family-portal [data-family-topbar] a:hover {
+    background: rgba(190, 145, 86, 0.16);
+}
+
+/* DARK TEXT */
+html.family-theme-dark body.family-portal [data-family-topbar] {
+    color: #F5EBDD;
+}
+
+/* LIGHT TEXT */
+html.family-theme-light body.family-portal [data-family-topbar] {
+    color: #382719;
+}
+
+/* THEME BUTTON */
+body.family-portal [data-family-topbar] [data-family-theme-toggle] {
+    transition:
+        background-color 200ms ease,
+        color 200ms ease,
+        border-color 200ms ease;
+}
+
+body.family-portal [data-family-topbar] [data-family-theme-toggle]:hover {
+    background: rgba(190, 145, 86, 0.18);
+    color: var(--family-accent-hover);
+}
+
+/* TOPBAR - NATURAL IRREGULAR WOOD EDGE */
+body.family-portal [data-family-topbar] {
+    clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 91%,
+        98% 95%,
+        96% 89%,
+        94% 100%,
+        91% 92%,
+        88% 97%,
+        85% 89%,
+        82% 95%,
+        78% 90%,
+        75% 100%,
+        72% 91%,
+        68% 96%,
+        65% 89%,
+        61% 95%,
+        57% 87%,
+        54% 97%,
+        50% 91%,
+        47% 100%,
+        43% 90%,
+        39% 96%,
+        35% 88%,
+        31% 94%,
+        27% 89%,
+        23% 100%,
+        19% 91%,
+        15% 96%,
+        11% 88%,
+        7% 95%,
+        3% 90%,
+        0 96%
+    );
+}
+
+/* =========================================================
+   FAMILY CONTENT SCROLLBAR - BLACKWOOD & NATURAL OAK
+   ========================================================= */
+
+/* Firefox - Dark */
+html.family-theme-dark body.family-portal {
+    scrollbar-width: thin;
+    scrollbar-color: #98704a #21170f;
+}
+
+/* Firefox - Light */
+html.family-theme-light body.family-portal {
+    scrollbar-width: thin;
+    scrollbar-color: #b58a58 #e8d5b8;
+}
+
+/* Chrome, Edge, Safari */
+body.family-portal * {
+    scrollbar-width: thin;
+    scrollbar-color: #98704a #21170f;
+}
+
+html.family-theme-dark body.family-portal *::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+html.family-theme-dark body.family-portal *::-webkit-scrollbar-track {
+    background: #21170f;
+    border-radius: 10px;
+}
+
+html.family-theme-dark body.family-portal *::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        #b58a58,
+        #76502f,
+        #a77b4d
+    );
+    border: 2px solid #21170f;
+    border-radius: 10px;
+}
+
+html.family-theme-dark body.family-portal *::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        180deg,
+        #d2aa75,
+        #98704a
+    );
+}
+
+/* Natural Oak */
+html.family-theme-light body.family-portal *::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+}
+
+html.family-theme-light body.family-portal *::-webkit-scrollbar-track {
+    background: #e8d5b8;
+    border-radius: 10px;
+}
+
+html.family-theme-light body.family-portal *::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+        180deg,
+        #d0ad7c,
+        #987044,
+        #c19a65
+    );
+    border: 2px solid #e8d5b8;
+    border-radius: 10px;
+}
+
+html.family-theme-light body.family-portal *::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+        180deg,
+        #e0bd8b,
+        #ad8050
+    );
+}
+
+/* =====================================================
+   FAMILY LEAF ACTION BUTTON
+   Real leaf texture + organic leaf silhouette
+   ===================================================== */
+
+body.family-portal .family-leaf-button {
+    position: relative;
+    isolation: isolate;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    min-height: 44px;
+    min-width: 125px;
+    padding: 10px 27px;
+
+    color: #fff !important;
+    font-weight: 700;
+    letter-spacing: .01em;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, .85);
+
+    background-color: #14532d;
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(8, 55, 24, .48),
+            rgba(3, 35, 15, .76)
+        ),
+        url('/images/family/leaf-texture.jpg');
+
+    background-size: cover, cover;
+    background-position: center, center;
+    background-repeat: no-repeat;
+
+    border: 1px solid rgba(190, 220, 150, .55);
+    border-radius: 0;
+
+   clip-path: polygon(
+    0% 50%,
+    3% 43%,
+    8% 34%,
+    16% 24%,
+    26% 15%,
+    38% 8%,
+    51% 4%,
+    64% 6%,
+    76% 12%,
+    87% 22%,
+    95% 35%,
+    100% 50%,
+    95% 65%,
+    87% 78%,
+    76% 88%,
+    64% 94%,
+    51% 96%,
+    38% 92%,
+    26% 85%,
+    16% 76%,
+    8% 66%,
+    3% 57%
+);
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, .25);
+    transition:
+        transform .25s ease,
+        filter .25s ease;
+}
+
+body.family-portal .family-leaf-button:hover {
+    filter: brightness(1.2) saturate(1.12)
+        drop-shadow(0 4px 5px rgba(0, 0, 0, .3));
+    transform: translateY(-2px);
+}
+
+body.family-portal .family-leaf-button:active {
+    transform: scale(.97);
+    filter: brightness(.9);
+}
+
+body.family-portal .family-leaf-button:focus-visible {
+    outline: 3px solid #d8bd79;
+    outline-offset: 4px;
+}
+
+body.family-portal .family-leaf-button:disabled {
+    opacity: .55;
+    cursor: not-allowed;
+    filter: grayscale(.65);
+    transform: none;
+}
+
+/* Red leaf - destructive actions */
+body.family-portal .family-leaf-button--danger {
+    background-color: #7f1d1d;
+    background-image:
+        linear-gradient(
+            180deg,
+            rgba(100, 12, 12, .55),
+            rgba(55, 5, 5, .82)
+        ),
+        url('/images/family/leaf-texture.jpg');
+    border-color: rgba(255, 180, 150, .5);
+}
+/* Matikan transition saat load pertama */
+html:not(.family-ready) body.family-portal,
+html:not(.family-ready) body.family-portal * {
+    transition: none !important;
+}
+
+/* Transisi halaman halus: sidebar & topbar tetap diam */
+@view-transition { navigation: auto; }

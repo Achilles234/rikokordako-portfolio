@@ -1,0 +1,6 @@
+
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/kirw2936/public_html/rikokordako.my.id
+    - /bin/mkdir -p $DEPLOYPATH
+    - find public -mindepth 1 -maxdepth 1 ! -name index.php -exec /bin/cp -R {} $DEPLOYPATH/ \;
