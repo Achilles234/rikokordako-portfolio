@@ -259,19 +259,34 @@ foreach ($relationships as $relationship) {
             @endif
         </section>
 
+        
         {{-- Family Relationships --}}
         <section class="space-y-4">
-            <div>
-                <h2 class="text-xl font-bold">
-                    {{ $isEnglish ? 'Family Relationships' : 'Hubungan Keluarga' }}
-                </h2>
-                <p class="mt-1 text-sm"
-                   style="color: var(--family-text-secondary);">
-                    {{ $isEnglish
-                        ? 'Family relationships recorded for this person.'
-                        : 'Daftar hubungan kekerabatan yang tercatat untuk individu ini.' }}
-                </p>
+            <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                <div>
+                    <h2 class="text-xl font-bold">
+                        {{ $isEnglish ? 'Family Relationships' : 'Hubungan Keluarga' }}
+                    </h2>
+                    <p class="mt-1 text-sm"
+                       style="color: var(--family-text-secondary);">
+                        {{ $isEnglish
+                            ? 'Family relationships recorded for this person.'
+                            : 'Daftar hubungan kekerabatan yang tercatat untuk individu ini.' }}
+                    </p>
+                </div>
+
+                @if ($canManageRelationships)
+                    <a href="{{ route('family.groups.people.relationships.create', [
+                        'groupId' => $group->id,
+                        'personId' => $person->id,
+                    ]) }}"
+                       class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:opacity-90"
+                       style="background: var(--family-accent, #4f46e5);">
+                        + {{ $isEnglish ? 'Add Relationship' : 'Tambah Hubungan' }}
+                    </a>
+                @endif
             </div>
+
 
             @foreach ($relationshipGroups as $section)
                 <div class="rounded-2xl border p-5 shadow-sm"
