@@ -128,6 +128,20 @@ Route::prefix('family')
                 ->whereNumber('personId')
                 ->name('groups.people.relationships.create');
 
+                        // Edit Family Relationship
+            Route::get('/groups/{groupId}/people/{personId}/relationships/{relationshipId}/edit', [FamilyPersonController::class, 'editRelationship'])
+                ->whereNumber('groupId')
+                ->whereNumber('personId')
+                ->whereNumber('relationshipId')
+                ->name('groups.people.relationships.edit');
+
+            // Update Family Relationship
+            Route::put('/groups/{groupId}/people/{personId}/relationships/{relationshipId}', [FamilyPersonController::class, 'updateRelationship'])
+                ->whereNumber('groupId')
+                ->whereNumber('personId')
+                ->whereNumber('relationshipId')
+                ->name('groups.people.relationships.update');
+
             Route::post('/groups/{groupId}/people/{personId}/relationships', [FamilyPersonController::class, 'storeRelationship'])
                 ->whereNumber('groupId')
                 ->whereNumber('personId')

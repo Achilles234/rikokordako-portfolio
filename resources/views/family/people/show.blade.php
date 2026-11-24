@@ -84,6 +84,7 @@ foreach ($relationships as $relationship) {
     ];
 
     $relationshipGroups[$section]['items'][] = [
+        'relationship' => $relationship,
         'person' => $relatedPerson,
         'direction' => $direction,
         'subtype' => $subtypeLabels[$relationship->relationship_subtype] ?? null,
@@ -96,8 +97,10 @@ foreach ($relationships as $relationship) {
 @endphp
 
 
-<div class="min-h-screen" style="background: var(--family-background);">
-    <div class="flex min-h-screen">
+<div class="h-screen overflow-hidden"
+     style="background: var(--family-background);">
+
+    <div class="flex h-full min-h-0">
 
         {{-- Shared desktop sidebar --}}
         @include('family.partials.sidebar', [
@@ -105,16 +108,15 @@ foreach ($relationships as $relationship) {
             'activeMenu' => 'people',
         ])
 
-        <div class="min-w-0 flex-1">
-
+      <div class="flex min-w-0 min-h-0 flex-1 flex-col overflow-hidden">
             {{-- Shared topbar --}}
             @include('family.partials.topbar', [
                 'navigationGroup' => $group,
             ])
 
-            <main id="family-main"
-                  class="px-4 py-6 sm:px-6 lg:px-8"
-                  style="color: var(--family-text-primary);">
+           <main id="family-main"
+      class="min-h-0 flex-1 overflow-y-auto overflow-x-hidden px-4 py-6 sm:px-6 lg:px-8"
+      style="color: var(--family-text-primary);">
 
                 <div class="mx-auto max-w-5xl space-y-6">
 
@@ -148,18 +150,7 @@ foreach ($relationships as $relationship) {
 
                 <div class="flex flex-wrap gap-2">
 
-                    @if ($canManageRelationships)
-                        <a href="{{ route('family.groups.people.relationships.create', [
-                            'groupId' => $group->id,
-                            'personId' => $person->id,
-                        ]) }}"
-                        class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold"
-                        style="background: var(--family-primary); color: var(--family-button-text);">
-                            + {{ $isEnglish ? 'Add Relationship' : 'Tambah Hubungan' }}
-                        </a>
-                    @endif
-
-
+                   
                     @if ($canUpdate)
                         <a href="{{ route('family.groups.people.edit', [
                             'groupId' => $group->id,
@@ -295,33 +286,46 @@ foreach ($relationships as $relationship) {
                                      style="background: var(--family-background); border-color: var(--family-border);">
 
                                     <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                                        <div>
-                                            <p class="font-semibold">
-                                                {{ $item['person']->full_name }}
-                                            </p>
+                                <div>
+                                    <p class="font-semibold">
+                                        {{ $item['person']->full_name }}
+                                    </p>
 
-                                            <p class="mt-1 text-xs"
-                                               style="color: var(--family-text-secondary);">
-                                                {{ $item['direction'] }}
-                                            </p>
-                                        </div>
+                                    <p class="mt-1 text-xs"
+                                    style="color: var(--family-text-secondary);">
+                                        {{ $item['direction'] }}
+                                    </p>
+                                </div>
 
-                                        <div class="flex flex-wrap gap-2">
-                                            @if ($item['subtype'])
-                                                <span class="rounded-full px-3 py-1 text-xs"
-                                                      style="background: var(--family-surface);">
-                                                    {{ $item['subtype'] }}
-                                                </span>
-                                            @endif
+                                <div class="flex flex-wrap items-center gap-2">
+                                    @if ($item['subtype'])
+                                        <span class="rounded-full px-3 py-1 text-xs"
+                                            style="background: var(--family-surface);">
+                                            {{ $item['subtype'] }}
+                                        </span>
+                                    @endif
 
-                                            @if ($item['parent_role'])
-                                                <span class="rounded-full px-3 py-1 text-xs"
-                                                      style="background: var(--family-surface);">
-                                                    {{ $item['parent_role'] }}
-                                                </span>
-                                            @endif
-                                        </div>
-                                    </div>
+                                    @if ($item['parent_role'])
+                                        <span class="rounded-full px-3 py-1 text-xs"
+                                            style="background: var(--family-surface);">
+                                            {{ $item['parent_role'] }}
+                                        </span>
+                                    @endif
+
+                                    @if ($canManageRelationships)
+                                        <a href="{{ route('family.groups.people.relationships.edit', [
+                                            'groupId' => $group->id,
+                                            'personId' => $person->id,
+                                            'relationshipId' => $item['relationship']->id,
+                                        ]) }}"
+                                        class="inline-flex items-center justify-center rounded-xl border px-4 py-2 text-xs font-semibold transition hover:opacity-80"
+                                        style="border-color: var(--family-border);
+                                                color: var(--family-text-primary);">
+                                            {{ $isEnglish ? 'Edit' : 'Edit Hubungan' }}
+                                        </a>
+                                    @endif
+                                </div>
+                            </div>
 
                                    @if ($item['started_at'] || $item['ended_at'])
                                         <p class="mt-3 text-xs"

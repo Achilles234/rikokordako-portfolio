@@ -98,6 +98,131 @@ class FamilyRelationshipService
         });
     }
 
+    public function update(
+        FamilyRelationship $relationship,
+        array $data
+    ): FamilyRelationship {
+        return DB::transaction(function () use ($relationship, $data) {
+            $current = FamilyRelationship::query()
+                ->whereKey($relationship->getKey())
+                ->lockForUpdate()
+                ->firstOrFail();
+
+            $personId = (int) $data['person_id'];
+            $relatedPersonId = (int) $data['related_person_id'];
+            $type = $data['relationship_type'];
+            $subtype = $data['relationship_subtype'] ?? null;
+            $parentRole = $data['parent_role'] ?? null;
+
+            if ($personId === $relatedPersonId) {
+                throw ValidationException::withMessages([
+                    'related_person_id' =>
+                        'Seseorang tidak dapat berelasi dengan dirinya sendiri.',
+                ]);
+            }
+
+            if (! in_array($type, ['parent', 'spouse', 'guardian'], true)) {
+                throw ValidationException::withMessages([
+                    'relationship_type' => 'Jenis hubungan tidak valid.',
+                ]);
+            }
+
+            $this->validateSubtype($type, $subtype);
+            $parentRole = $this->validateParentRole($type, $parentRole);
+
+            $startDate = $data['started_at'] ?? null;
+            $endDate = $data['ended_at'] ?? null;
+
+            $this->validateDates($startDate, $endDate);
+
+            // Lock both people in a consistent ascending ID order.
+            $people = FamilyPerson::query()
+                ->whereIn('id', [$personId, $relatedPersonId])
+                ->orderBy('id')
+                ->lockForUpdate()
+                ->get()
+                ->keyBy('id');
+
+            if ($people->count() !== 2) {
+                abort(404, 'Data individu tidak ditemukan.');
+            }
+
+            // Spouse records always use ascending person IDs.
+            if ($type === 'spouse') {
+                $firstId = min($personId, $relatedPersonId);
+                $secondId = max($personId, $relatedPersonId);
+
+                $personId = $firstId;
+                $relatedPersonId = $secondId;
+
+                $existingSpouses = FamilyRelationship::query()
+                    ->where('person_id', $personId)
+                    ->where('related_person_id', $relatedPersonId)
+                    ->where('relationship_type', 'spouse')
+                    ->where('id', '!=', $current->getKey())
+                    ->lockForUpdate()
+                    ->get();
+
+                foreach ($existingSpouses as $existing) {
+                    if ($this->periodsOverlap(
+                        $startDate,
+                        $endDate,
+                        $existing->started_at?->format('Y-m-d'),
+                        $existing->ended_at?->format('Y-m-d')
+                    )) {
+                        throw ValidationException::withMessages([
+                            'relationship_type' =>
+                                'Periode hubungan pasangan bertumpang tindih dengan riwayat yang sudah ada.',
+                        ]);
+                    }
+                }
+
+                $subtype = null;
+                $parentRole = null;
+            }
+
+            if ($type === 'parent') {
+                $this->preventParentCycle(
+                    $personId,
+                    $relatedPersonId,
+                    (int) $current->getKey()
+                );
+            }
+
+            // Ignore the current record when checking duplicates.
+            if ($type !== 'spouse') {
+                $exists = FamilyRelationship::query()
+                    ->where('person_id', $personId)
+                    ->where('related_person_id', $relatedPersonId)
+                    ->where('relationship_type', $type)
+                    ->where('relationship_subtype', $subtype)
+                    ->where('id', '!=', $current->getKey())
+                    ->exists();
+
+                if ($exists) {
+                    throw ValidationException::withMessages([
+                        'relationship_subtype' =>
+                            'Hubungan dengan jenis dan subjenis yang sama sudah tercatat.',
+                    ]);
+                }
+            }
+
+            // Update the existing record; do not create a new one.
+            $current->update([
+                'person_id' => $personId,
+                'related_person_id' => $relatedPersonId,
+                'relationship_type' => $type,
+                'relationship_subtype' => $subtype,
+                'parent_role' => $parentRole,
+                'started_at' => $startDate,
+                'ended_at' => $endDate,
+                'notes' => $data['notes'] ?? null,
+            ]);
+
+            return $current->refresh();
+        });
+    }
+
     private function createSpouse(
         FamilyPerson $first,
         FamilyPerson $second,
@@ -244,7 +369,8 @@ class FamilyRelationshipService
 
     private function preventParentCycle(
         int $parentId,
-        int $childId
+        int $childId,
+        ?int $ignoreRelationshipId = null
     ): void {
         $visited = [];
         $stack = [$childId];
@@ -265,10 +391,15 @@ class FamilyRelationshipService
                 ]);
             }
 
-            $children = FamilyRelationship::query()
+            $query = FamilyRelationship::query()
                 ->where('person_id', $currentId)
-                ->where('relationship_type', 'parent')
-                ->pluck('related_person_id');
+                ->where('relationship_type', 'parent');
+
+            if ($ignoreRelationshipId !== null) {
+                $query->where('id', '!=', $ignoreRelationshipId);
+            }
+
+            $children = $query->pluck('related_person_id');
 
             foreach ($children as $nextId) {
                 $stack[] = (int) $nextId;
