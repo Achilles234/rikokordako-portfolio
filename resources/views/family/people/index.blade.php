@@ -20,8 +20,10 @@
     ];
 @endphp
 
-<div class="min-h-screen" style="background: var(--family-background);">
-    <div class="flex min-h-screen">
+<div class="h-screen overflow-hidden"
+     style="background: var(--family-background);">
+
+    <div class="flex h-full min-h-0">
 
         {{-- Shared desktop sidebar --}}
         @include('family.partials.sidebar', [
@@ -29,16 +31,16 @@
             'activeMenu' => 'people',
         ])
 
-        <div class="min-w-0 flex-1">
+        <div class="flex min-w-0 min-h-0 flex-1 flex-col overflow-hidden">
 
             {{-- Shared topbar --}}
             @include('family.partials.topbar', [
                 'navigationGroup' => $group,
             ])
 
-            <main id="family-main"
-                  class="px-4 py-6 sm:px-6 lg:px-8"
-                  style="color: var(--family-text-primary);">
+          <main id="family-main"
+      class="min-h-0 flex-1 overflow-y-auto overflow-x-hidden px-4 py-6 sm:px-6 lg:px-8"
+      style="color: var(--family-text-primary);">
 
                 <div class="mx-auto max-w-7xl space-y-6">
 
@@ -227,7 +229,7 @@
         </p>
 
     </div>
-                </div>
+                                </div>
             </main>
         </div>
     </div>
