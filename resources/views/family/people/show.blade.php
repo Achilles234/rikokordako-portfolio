@@ -120,51 +120,78 @@ foreach ($relationships as $relationship) {
 
                 <div class="mx-auto max-w-5xl space-y-6">
 
-        {{-- Header --}}
-        <div>
-            <a href="{{ route('family.groups.people.index', $group->id) }}"
-               class="text-sm hover:underline"
-               style="color: var(--family-text-secondary);">
-                ← {{ $isEnglish ? 'Back to people' : 'Kembali ke Data Individu' }}
-            </a>
+      
+{{-- Header --}}
+<div>
+    <a href="{{ route('family.groups.people.index', $group->id) }}"
+       class="text-sm hover:underline"
+       style="color: var(--family-text-secondary);">
+        ← {{ $isEnglish ? 'Back to people' : 'Kembali ke Data Individu' }}
+    </a>
 
-            <div class="mt-4 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                    <h1 class="text-2xl font-bold sm:text-3xl">
-                        {{ $person->full_name }}
-                    </h1>
+    <div class="mt-5 flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
 
-                    @if ($person->nickname)
-                        <p class="mt-1 text-sm"
-                           style="color: var(--family-text-secondary);">
-                            {{ $person->nickname }}
-                        </p>
-                    @endif
+        <div class="flex min-w-0 items-center gap-4 sm:gap-5">
 
-                    <p class="mt-2 text-sm"
-                       style="color: var(--family-text-secondary);">
-                        {{ $group->name }}
-                    </p>
-                </div>
+            {{-- Profile Photo --}}
+            <div class="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-full border-2 shadow-sm sm:h-32 sm:w-32"
+                 style="background: var(--family-surface); border-color: var(--family-border);">
 
-
-                <div class="flex flex-wrap gap-2">
-
-                   
-                    @if ($canUpdate)
-                        <a href="{{ route('family.groups.people.edit', [
+                @if ($person->photo_path)
+                    <img
+                        src="{{ route('family.groups.people.photo', [
                             'groupId' => $group->id,
                             'personId' => $person->id,
                         ]) }}"
-                           class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white"
-                           style="background: var(--family-accent, #4f46e5);">
-                            {{ $isEnglish ? 'Edit Profile' : 'Edit Profil' }}
-                        </a>
-                    @endif
-                </div>
+                        alt="{{ $person->full_name }}"
+                        class="h-full w-full object-cover"
+                    >
+                @else
+                    <span class="text-4xl font-bold sm:text-5xl"
+                          style="color: var(--family-text-secondary);">
+                        {{ mb_strtoupper(mb_substr($person->full_name, 0, 1)) }}
+                    </span>
+                @endif
 
             </div>
+
+            {{-- Person Identity --}}
+            <div class="min-w-0">
+                <h1 class="break-words text-2xl font-bold sm:text-3xl">
+                    {{ $person->full_name }}
+                </h1>
+
+                @if ($person->nickname)
+                    <p class="mt-1 text-sm"
+                       style="color: var(--family-text-secondary);">
+                        {{ $person->nickname }}
+                    </p>
+                @endif
+
+                <p class="mt-2 text-sm"
+                   style="color: var(--family-text-secondary);">
+                    {{ $group->name }}
+                </p>
+            </div>
+
         </div>
+
+        {{-- Actions --}}
+        @if ($canUpdate)
+            <div class="flex flex-wrap gap-2">
+                <a href="{{ route('family.groups.people.edit', [
+                    'groupId' => $group->id,
+                    'personId' => $person->id,
+                ]) }}"
+                   class="inline-flex items-center justify-center rounded-xl px-5 py-3 text-sm font-semibold text-white"
+                   style="background: var(--family-accent, #4f46e5);">
+                    {{ $isEnglish ? 'Edit Profile' : 'Edit Profil' }}
+                </a>
+            </div>
+        @endif
+
+    </div>
+</div>
 
         {{-- Profile --}}
         <section class="rounded-2xl border p-5 shadow-sm sm:p-6"

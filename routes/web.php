@@ -117,6 +117,15 @@ Route::prefix('family')
                 ->whereNumber('groupId')
                 ->name('groups.people.index');
 
+            // Private Family Profile Photo
+            Route::get(
+                '/groups/{groupId}/people/{personId}/photo',
+                [FamilyPersonController::class, 'photo']
+            )
+                ->whereNumber('groupId')
+                ->whereNumber('personId')
+                ->name('groups.people.photo');
+
             Route::get('/groups/{groupId}/people/{personId}', [FamilyPersonController::class, 'show'])
                 ->whereNumber('groupId')
                 ->whereNumber('personId')

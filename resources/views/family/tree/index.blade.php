@@ -282,19 +282,28 @@
     }
 
     .tree-avatar {
-        --sex: var(--tree-neutral);
-        display: flex;
-        width: 44px;
-        height: 44px;
-        min-width: 44px;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        background: color-mix(in srgb, var(--sex) 15%, transparent);
-        color: color-mix(in srgb, var(--sex) 78%, var(--family-text-primary));
-        font-size: 17px;
-        font-weight: 800;
-    }
+    --sex: var(--tree-neutral);
+    display: flex;
+    width: 44px;
+    height: 44px;
+    min-width: 44px;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border-radius: 50%;
+    background: color-mix(in srgb, var(--sex) 15%, transparent);
+    color: color-mix(in srgb, var(--sex) 78%, var(--family-text-primary));
+    font-size: 17px;
+    font-weight: 800;
+}
+
+.tree-avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
 
     .tree-person-info { min-width: 0; flex: 1; }
 
@@ -832,20 +841,36 @@
                                             };
                                         @endphp
 
-                                        <article
+                                       <article
                                             class="tree-person {{ $isSelected ? 'is-selected' : '' }}"
                                             data-person-id="{{ $person->id }}"
                                             data-parent-ids="{{ json_encode($parentIds) }}"
                                             data-person-name="{{ mb_strtolower($person->full_name) }}"
                                             data-display-name="{{ $person->full_name }}"
                                             data-sex="{{ $sexClass }}"
+                                            data-photo-url="{{ $person->photo_path ? route('family.groups.people.photo', [
+                                                'groupId' => $group->id,
+                                                'personId' => $person->id,
+                                            ]) : '' }}"
                                             tabindex="0"
                                             role="button"
                                             aria-pressed="{{ $isSelected ? 'true' : 'false' }}"
                                             aria-label="Pilih {{ $person->full_name }}"
                                         >
+                                            {{-- Profile Photo / Initial --}}
                                             <div class="tree-avatar" data-sex="{{ $sexClass }}">
-                                                {{ strtoupper(mb_substr($person->full_name, 0, 1)) }}
+                                                @if ($person->photo_path)
+                                                    <img
+                                                        src="{{ route('family.groups.people.photo', [
+                                                            'groupId' => $group->id,
+                                                            'personId' => $person->id,
+                                                        ]) }}"
+                                                        alt="{{ $person->full_name }}"
+                                                        loading="lazy"
+                                                    >
+                                                @else
+                                                    {{ strtoupper(mb_substr($person->full_name, 0, 1)) }}
+                                                @endif
                                             </div>
 
                                             <div class="tree-person-info">
@@ -928,6 +953,7 @@ document.addEventListener('DOMContentLoaded', function () {
             el: card,
             name: card.dataset.displayName || '',
             nameLower: card.dataset.personName || '',
+            photoUrl: card.dataset.photoUrl || '',
             sex: card.dataset.sex || 'unknown',
             rawParents,
             parents: [],
@@ -1276,7 +1302,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const lineage = state.lineage;
 
         panelAvatar.dataset.sex = person.sex;
-        panelAvatar.textContent = person.name.charAt(0).toUpperCase();
+        panelAvatar.replaceChildren();
+
+        if (person.photoUrl) {
+            const img = document.createElement('img');
+            img.src = person.photoUrl;
+            img.alt = person.name;
+            panelAvatar.appendChild(img);
+        } else {
+            panelAvatar.textContent = person.name.charAt(0).toUpperCase();
+        }
         panelName.textContent = person.name;
         panelMeta.textContent = sexLabel(person.sex);
         panelUp.textContent = lineage.up.size;

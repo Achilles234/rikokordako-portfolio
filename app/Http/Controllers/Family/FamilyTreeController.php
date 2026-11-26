@@ -46,6 +46,7 @@ class FamilyTreeController extends Controller
                 'full_name',
                 'sex',
                 'life_status',
+                'photo_path',
             ]);
 
 

@@ -56,13 +56,14 @@
             </p>
         </div>
 
-        <form method="POST"
-              action="{{ route('family.groups.people.update', [
-                  'groupId' => $group->id,
-                  'personId' => $person->id,
-              ]) }}"
-              class="space-y-6 rounded-2xl border p-5 shadow-sm sm:p-7"
-              style="background: var(--family-surface); border-color: var(--family-border);">
+       <form method="POST"
+      enctype="multipart/form-data"
+      action="{{ route('family.groups.people.update', [
+          'groupId' => $group->id,
+          'personId' => $person->id,
+      ]) }}"
+      class="space-y-6 rounded-2xl border p-5 shadow-sm sm:p-7"
+      style="background: var(--family-surface); border-color: var(--family-border);">
 
             @csrf
             @method('PUT')
@@ -83,6 +84,77 @@
                 </h2>
             </div>
 
+                {{-- Profile Photo --}}
+                <div class="border-t pt-5" style="border-color: var(--family-border);">
+                    <h2 class="font-semibold">
+                        {{ $isEnglish ? 'Profile Photo' : 'Foto Profil' }}
+                    </h2>
+
+                    <div class="mt-4 flex flex-col gap-5 sm:flex-row sm:items-center">
+
+                        <div class="flex h-28 w-28 shrink-0 items-center justify-center overflow-hidden rounded-full border"
+                            style="background: var(--family-background); border-color: var(--family-border);">
+
+                            @if ($person->photo_path)
+                                <img
+                                    id="profile-photo-preview"
+                                    src="{{ route('family.groups.people.photo', [
+                                        'groupId' => $group->id,
+                                        'personId' => $person->id,
+                                    ]) }}"
+                                    alt="{{ $person->full_name }}"
+                                    class="h-full w-full object-cover"
+                                >
+                            @else
+                                <div id="profile-photo-fallback"
+                                    class="flex h-full w-full items-center justify-center text-3xl font-bold"
+                                    style="color: var(--family-text-secondary);">
+                                    {{ mb_strtoupper(mb_substr($person->full_name, 0, 1)) }}
+                                </div>
+
+                                <img
+                                    id="profile-photo-preview"
+                                    alt="{{ $person->full_name }}"
+                                    class="hidden h-full w-full object-cover"
+                                >
+                            @endif
+                        </div>
+
+                        <div class="min-w-0 flex-1 space-y-3">
+                            <div>
+                                <label for="photo" class="text-sm font-medium">
+                                    {{ $isEnglish ? 'Choose a new photo' : 'Pilih foto baru' }}
+                                </label>
+
+                                <input
+                                    id="photo"
+                                    name="photo"
+                                    type="file"
+                                    accept="image/jpeg,image/png,image/webp"
+                                    class="mt-2 block w-full text-sm"
+                                >
+
+                                <p class="mt-1 text-xs" style="color: var(--family-text-secondary);">
+                                    {{ $isEnglish
+                                        ? 'JPG, PNG or WebP. Maximum 2 MB.'
+                                        : 'Format JPG, PNG atau WebP. Maksimal 2 MB.' }}
+                                </p>
+                            </div>
+
+                            @if ($person->photo_path)
+                                <label class="flex items-center gap-2 text-sm">
+                                    <input
+                                        type="checkbox"
+                                        name="remove_photo"
+                                        value="1"
+                                        class="rounded"
+                                    >
+                                    {{ $isEnglish ? 'Remove current photo' : 'Hapus foto saat ini' }}
+                                </label>
+                            @endif
+                        </div>
+                    </div>
+                </div>
             <div class="space-y-2">
                 <label for="full_name" class="text-sm font-medium">
                     {{ $isEnglish ? 'Full Name' : 'Nama Lengkap' }} *
@@ -229,4 +301,36 @@
         </div>
     </div>
 </div>
+@push('scripts')
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const input = document.getElementById('photo');
+    const preview = document.getElementById('profile-photo-preview');
+    const fallback = document.getElementById('profile-photo-fallback');
+
+    if (!input || !preview) return;
+
+    input.addEventListener('change', function () {
+        const file = this.files[0];
+
+        if (!file) return;
+
+        if (!file.type.startsWith('image/')) return;
+
+        const reader = new FileReader();
+
+        reader.onload = function (event) {
+            preview.src = event.target.result;
+            preview.classList.remove('hidden');
+
+            if (fallback) {
+                fallback.classList.add('hidden');
+            }
+        };
+
+        reader.readAsDataURL(file);
+    });
+});
+</script>
+@endpush
 @endsection

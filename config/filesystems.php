@@ -46,6 +46,14 @@ return [
         'report' => false,
     ],
 
+        'family_profiles' => [
+        'driver' => 'local',
+        'root' => storage_path('app/private/family-profiles'),
+        'serve' => false,
+        'throw' => true,
+        'report' => false,
+    ],
+
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

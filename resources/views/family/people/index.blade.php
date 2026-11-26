@@ -96,8 +96,7 @@
                         : 'Daftar individu yang terdaftar dalam grup keluarga ini.' }}
                 </p>
             </div>
-
-            @if ($people->isEmpty())
+                @if ($people->isEmpty())
                 <div class="px-5 py-12 text-center">
                     <div class="text-4xl">👥</div>
                     <h3 class="mt-3 font-semibold">
@@ -142,19 +141,49 @@
                                 <tr class="border-t"
                                     style="border-color: var(--family-border);">
 
-                                    <td class="px-5 py-4">
+                                    
+                            <td class="px-5 py-4">
+                                <div class="flex items-center gap-3">
+
+                                    {{-- Profile Avatar --}}
+                                    <div class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full border"
+                                        style="background: var(--family-background); border-color: var(--family-border);">
+
+                                        @if ($person->photo_path)
+                                            <img
+                                                src="{{ route('family.groups.people.photo', [
+                                                    'groupId' => $group->id,
+                                                    'personId' => $person->id,
+                                                ]) }}"
+                                                alt="{{ $person->full_name }}"
+                                                loading="lazy"
+                                                class="h-full w-full object-cover"
+                                            >
+                                        @else
+                                            <span class="text-sm font-bold"
+                                                style="color: var(--family-text-secondary);">
+                                                {{ mb_strtoupper(mb_substr($person->full_name, 0, 1)) }}
+                                            </span>
+                                        @endif
+
+                                    </div>
+
+                                    {{-- Person Name --}}
+                                    <div class="min-w-0">
                                         <div class="font-semibold">
                                             {{ $person->full_name }}
                                         </div>
 
                                         @if ($person->nickname)
                                             <div class="mt-1 text-xs"
-                                                 style="color: var(--family-text-secondary);">
+                                                style="color: var(--family-text-secondary);">
                                                 {{ $person->nickname }}
                                             </div>
                                         @endif
-                                    </td>
+                                    </div>
 
+                                </div>
+                            </td>
                                     <td class="px-5 py-4">
                                         @if ($person->sex === 'male')
                                             {{ $isEnglish ? 'Male' : 'Laki-laki' }}

@@ -375,12 +375,15 @@
 
                                     <div class="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full bg-blue-500/10 font-bold text-blue-500">
 
-                                        @if ($member->person?->photo_path)
-                                            <img
-                                                src="{{ asset('storage/' . $member->person->photo_path) }}"
-                                                alt=""
-                                                class="h-full w-full object-cover">
-                                        @else
+                                       @if ($member->person?->photo_path)
+                                                <img
+                                                    src="{{ route('family.groups.people.photo', [
+                                                        'groupId' => $group->id,
+                                                        'personId' => $member->person->id,
+                                                    ]) }}"
+                                                    alt="{{ $member->person->full_name }}"
+                                                    class="h-full w-full object-cover">
+                                            @else
                                             {{ mb_strtoupper(mb_substr(
                                                 $member->person?->nickname
                                                     ?: $member->person?->full_name

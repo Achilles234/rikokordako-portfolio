@@ -14,6 +14,9 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\View;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 
 class FamilyPersonController extends Controller
@@ -226,9 +229,54 @@ class FamilyPersonController extends Controller
         ]);
     }
 
-    /**
- * Show the create family relationship form.
- */
+public function photo(int $groupId, int $personId)
+{
+    $user = auth('family')->user();
+
+    $group = FamilyGroup::query()->findOrFail($groupId);
+
+    abort_unless($group->status === 'active', 404);
+
+    abort_unless(
+        $this->familyAccess->hasPermission(
+            $user,
+            'persons.view',
+            $group->id
+        ),
+        403
+    );
+
+    $person = FamilyPerson::query()
+        ->whereKey($personId)
+        ->whereHas('memberships', function ($query) use ($group) {
+            $query->where('family_group_id', $group->id);
+        })
+        ->firstOrFail();
+
+    $path = $person->photo_path;
+
+    abort_unless(
+        $path &&
+        basename($path) === $path &&
+        str_ends_with(strtolower($path), '.webp'),
+        404
+    );
+
+    $disk = Storage::disk('family_profiles');
+
+    abort_unless($disk->exists($path), 404);
+
+    return response()->file(
+        $disk->path($path),
+        [
+            'Content-Type' => 'image/webp',
+            'Cache-Control' => 'private, no-store, max-age=0',
+            'X-Content-Type-Options' => 'nosniff',
+            'Vary' => 'Cookie',
+        ]
+    );
+}
+  
 public function createRelationship(int $groupId, int $personId): View
 {
     $user = auth('family')->user();
@@ -640,48 +688,215 @@ public function updateRelationship(
     /**
      * Update shared person identity data.
      */
-    public function update(
-        Request $request,
-        int $groupId,
-        int $personId
-    ): RedirectResponse {
-        $user = auth('family')->user();
-        $group = FamilyGroup::query()->findOrFail($groupId);
+    
+public function update(
+    Request $request,
+    int $groupId,
+    int $personId
+): RedirectResponse {
+    $user = auth('family')->user();
+    $group = FamilyGroup::query()->findOrFail($groupId);
 
-        abort_unless(
-            $this->familyAccess->hasPermission(
-                $user,
-                'persons.update',
-                $group->id
-            ),
-            403
-        );
+    abort_unless(
+        $this->familyAccess->hasPermission(
+            $user,
+            'persons.update',
+            $group->id
+        ),
+        403
+    );
 
-        abort_unless($group->status === 'active', 403);
+    abort_unless($group->status === 'active', 403);
 
-        $person = FamilyPerson::query()
-            ->whereKey($personId)
-            ->whereHas('memberships', function ($query) use ($group) {
-                $query->where('family_group_id', $group->id);
-            })
-            ->firstOrFail();
+    $person = FamilyPerson::query()
+        ->whereKey($personId)
+        ->whereHas('memberships', function ($query) use ($group) {
+            $query->where('family_group_id', $group->id);
+        })
+        ->firstOrFail();
 
-        $validated = $request->validate([
-            'full_name' => ['required', 'string', 'max:255'],
-            'nickname' => ['nullable', 'string', 'max:255'],
-            'sex' => ['nullable', 'string', 'max:20'],
-            'birth_date' => ['nullable', 'date'],
-            'birth_place' => ['nullable', 'string', 'max:255'],
-            'death_date' => ['nullable', 'date', 'after_or_equal:birth_date'],
-            'death_place' => ['nullable', 'string', 'max:255'],
-            'life_status' => ['required', 'string', 'max:20'],
-            'biography' => ['nullable', 'string'],
-        ]);
+    $validated = $request->validate([
+        'full_name' => ['required', 'string', 'max:255'],
+        'nickname' => ['nullable', 'string', 'max:255'],
+        'sex' => ['nullable', 'string', 'max:20'],
+        'birth_date' => ['nullable', 'date'],
+        'birth_place' => ['nullable', 'string', 'max:255'],
+        'death_date' => ['nullable', 'date', 'after_or_equal:birth_date'],
+        'death_place' => ['nullable', 'string', 'max:255'],
+        'life_status' => ['required', 'string', 'max:20'],
+        'biography' => ['nullable', 'string'],
+
+        'photo' => [
+            'nullable',
+            'image',
+            'mimes:jpg,jpeg,png,webp',
+            'max:2048',
+        ],
+
+        'remove_photo' => [
+            'nullable',
+            'boolean',
+        ],
+    ]);
+
+    $disk = Storage::disk('family_profiles');
+
+    $oldPhotoPath = $person->photo_path;
+    $newPhotoPath = null;
+
+    $uploadedPhoto = $request->file('photo');
+    $removePhoto = $request->boolean('remove_photo');
+
+    unset($validated['photo'], $validated['remove_photo']);
+
+    try {
+        if ($uploadedPhoto) {
+            $newPhotoPath = $this->storeProfilePhoto($uploadedPhoto);
+            $validated['photo_path'] = $newPhotoPath;
+        } elseif ($removePhoto) {
+            $validated['photo_path'] = null;
+        }
 
         $person->update($validated);
+    } catch (\Throwable $e) {
+        if ($newPhotoPath) {
+            $disk->delete($newPhotoPath);
+        }
 
-        return redirect()
-            ->route('family.groups.people.index', $group->id)
-            ->with('success', 'Data individu berhasil diperbarui.');
+        throw $e;
     }
+
+    if (
+        ($uploadedPhoto || $removePhoto) &&
+        $oldPhotoPath &&
+        $oldPhotoPath !== $newPhotoPath
+    ) {
+        $disk->delete($oldPhotoPath);
+    }
+
+    return redirect()
+        ->route('family.groups.people.index', $group->id)
+        ->with('success', 'Data individu berhasil diperbarui.');
+}
+
+private function storeProfilePhoto(UploadedFile $file): string
+{
+    if (
+        ! function_exists('imagecreatefromstring') ||
+        ! function_exists('imagewebp')
+    ) {
+        throw new \RuntimeException(
+            'Dukungan pemrosesan gambar GD/WebP tidak tersedia.'
+        );
+    }
+
+    $imageData = file_get_contents($file->getRealPath());
+
+    if ($imageData === false) {
+        throw new \RuntimeException('Foto tidak dapat dibaca.');
+    }
+
+    $source = imagecreatefromstring($imageData);
+
+    if ($source === false) {
+        throw new \RuntimeException('Foto tidak valid.');
+    }
+
+    $destination = null;
+
+    try {
+        $width = imagesx($source);
+        $height = imagesy($source);
+
+        if (
+            $width < 1 ||
+            $height < 1 ||
+            ($width * $height) > 40000000
+        ) {
+            throw new \RuntimeException(
+                'Resolusi foto terlalu besar atau tidak valid.'
+            );
+        }
+
+        // Maksimal 1024 px pada sisi terpanjang.
+        $scale = min(1, 1024 / max($width, $height));
+
+        $newWidth = max(1, (int) round($width * $scale));
+        $newHeight = max(1, (int) round($height * $scale));
+
+        $destination = imagecreatetruecolor(
+            $newWidth,
+            $newHeight
+        );
+
+        if ($destination === false) {
+            throw new \RuntimeException(
+                'Gagal menyiapkan gambar hasil.'
+            );
+        }
+
+        // Pertahankan transparansi.
+        imagealphablending($destination, false);
+        imagesavealpha($destination, true);
+
+        $transparent = imagecolorallocatealpha(
+            $destination,
+            0,
+            0,
+            0,
+            127
+        );
+
+        imagefill($destination, 0, 0, $transparent);
+
+        if (! imagecopyresampled(
+            $destination,
+            $source,
+            0,
+            0,
+            0,
+            0,
+            $newWidth,
+            $newHeight,
+            $width,
+            $height
+        )) {
+            throw new \RuntimeException(
+                'Gagal mengoptimalkan foto.'
+            );
+        }
+
+        ob_start();
+
+        $success = imagewebp($destination, null, 82);
+        $webpData = ob_get_clean();
+
+        if (
+            ! $success ||
+            $webpData === false ||
+            $webpData === ''
+        ) {
+            throw new \RuntimeException(
+                'Gagal mengonversi foto ke WebP.'
+            );
+        }
+
+        $path = (string) Str::uuid() . '.webp';
+
+        Storage::disk('family_profiles')->put(
+            $path,
+            $webpData
+        );
+
+        return $path;
+
+    } finally {
+        if ($destination instanceof \GdImage) {
+            imagedestroy($destination);
+        }
+
+        imagedestroy($source);
+    }
+}
+
 }
