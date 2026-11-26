@@ -1593,7 +1593,21 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ---------------------------------------------------------------
      * Inisialisasi
      * ------------------------------------------------------------- */
+    /* Tinggi canvas mengikuti sisa layar, supaya kotak cari & toolbar
+       (yang menempel di bagian bawah canvas) selalu terlihat tanpa scroll. */
+    function sizeViewport() {
+        const top = viewport.getBoundingClientRect().top + window.scrollY;
+        const available = window.innerHeight - top - 24;
+        const minHeight = window.innerWidth < 768 ? 440 : 480;
+
+        viewport.style.height = `${Math.max(minHeight, Math.min(available, 900))}px`;
+    }
+
+    sizeViewport();
+    window.addEventListener('resize', sizeViewport);
+
     requestAnimationFrame(() => {
+        sizeViewport();
         drawConnections();
         fitTree(false);
 
